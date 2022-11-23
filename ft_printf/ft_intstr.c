@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_intstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaratzi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 17:20:28 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/08 17:42:07 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/11/23 18:47:44 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/11/23 19:43:43 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_intstr(char *src, int count)
 {
-	if (lst != NULL)
+	ssize_t	a; 
+
+	if (src == NULL)
 	{
-		if (*lst != NULL)
-		{
-			(ft_lstlast(*lst))->next = new;
-			return ;
-		}
-		*lst = new;
+		write(1, "(null)", 6);
+		count += 6;
+		return (count);
 	}
-	return ;
+	a = ft_strlen((const char *)src);
+	write(1, src, a);
+	count += a;
+	return (count);
 }

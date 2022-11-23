@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_intudigits.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 18:20:37 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/08 14:55:01 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/11/23 19:26:43 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/11/23 19:27:35 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_intudigits(unsigned int number)
 {
-	unsigned char	*m1;
-	unsigned char	*m2;
+	int	counter;
 
-	m1 = (unsigned char *) s1;
-	m2 = (unsigned char *) s2;
-	while (n-- > 0)
-		if (*(m1++) != *(m2++))
-			break ;
-	return (*(--m1) - *(--m2));
+	counter = 0;
+	if (number <= 0)
+		counter++;
+	while (number)
+	{
+		counter++;
+		number = number / 10;
+	}
+	return (counter);
 }

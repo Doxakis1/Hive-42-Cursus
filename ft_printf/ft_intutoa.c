@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_intutoa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 03:11:51 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/15 07:41:57 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/11/23 18:54:42 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/11/23 19:31:07 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		digits(int number);
-
-char	*ft_itoa(int n)
+int	ft_intutoa(unsigned int a, int count)
 {
 	int		counter;
 	char	*str;
 	long	number;
 
-	counter = digits(n);
-	number = n;
+	counter = ft_intudigits(a);
+	number = a;
 	str = malloc(sizeof(char) * counter + 1);
 	if (str == NULL)
-		return (NULL);
-	if (number < 0)
-	{
-		str[0] = '-';
-		number = -number;
-	}
-	if (number == 0)
+		return (count);
+	if (number <= 0)
 		str[0] = '0';
 	str[counter--] = '\0';
 	while (number)
@@ -38,20 +31,7 @@ char	*ft_itoa(int n)
 		str[counter--] = number % 10 + '0';
 		number = number / 10;
 	}
-	return (str);
-}
-
-int	digits(int number)
-{
-	int	counter;
-
-	counter = 0;
-	if (number <= 0)
-		counter++;
-	while (number)
-	{
-		counter++;
-		number = number / 10;
-	}
-	return (counter);
+	count = ft_intstr(str, count);
+	free(str);
+	return (count);
 }

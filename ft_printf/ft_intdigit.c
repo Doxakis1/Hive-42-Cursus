@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_intdigit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 04:16:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/08 11:40:42 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/11/23 18:53:35 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/11/23 18:54:27 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	ft_intdigits(int number)
 {
-	char	*result;
-	size_t	str_len;
-	size_t	i;
+	int	counter;
 
-	if (s == NULL || f == NULL)
-		return (NULL);
-	str_len = ft_strlen(s);
-	result = malloc(str_len + 1);
-	if (result == NULL)
-		return (NULL);
-	i = 0;
-	while (i < str_len)
+	counter = 0;
+	if (number <= 0)
+		counter++;
+	while (number)
 	{
-		result[i] = f(i, s[i]);
-		++i;
+		counter++;
+		number = number / 10;
 	}
-	result[i] = '\0';
-	return (result);
+	return (counter);
 }

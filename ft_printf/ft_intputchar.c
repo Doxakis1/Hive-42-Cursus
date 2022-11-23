@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_intputchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaratzi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 11:33:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/17 13:42:13 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/11/23 18:46:31 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/11/23 18:47:02 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_intputchar(int character, int count)
 {
-	void	*final;
-	size_t	calculated;
-
-	calculated = count * size;
-	final = (void *)malloc(calculated);
-	if (final)
-		ft_bzero(final, calculated);
-	return (final);
+	write(1, &character, 1);
+	count++;
+	return (count);
 }

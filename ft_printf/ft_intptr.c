@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_intptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 04:16:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/08 12:07:32 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/11/23 18:51:56 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/11/23 19:44:32 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+int	ft_intptr(unsigned long long pointer, int count)
 {
-	size_t	string_len;
-	size_t	i;
-
-	i = 0;
-	if (s == NULL || f == NULL)
-		return ;
-	string_len = ft_strlen(s);
-	while (i < string_len)
+	write(1, "0x", 2);
+	count += 2;
+	if (pointer == 0)
 	{
-		f(i, &s[i]);
-		i++;
+		write(1, "0", 1);
+		count++;
+		return (count);
 	}
+	count = ft_inthex(pointer, count, 'x');
+	return (count);
 }
