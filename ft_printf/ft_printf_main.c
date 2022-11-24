@@ -6,13 +6,12 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:57:13 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/23 19:51:44 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/11/24 09:59:51 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdarg.h>
-#include <stdio.h>
 
 int	ft_checker(va_list args, const char tag, int count)
 {
@@ -56,18 +55,3 @@ int	ft_printf(const char *mains, ...)
 	va_end(args);
 	return (printed);
 }
-
-// int    main(void)
-// {
-//     int    len;
-//     int    orig;
-
-//     //char a[] = "haha %%%u";
-//     len = ft_printf(" %x\n", 0);
-//     orig = printf(" %x\n", 0);
-//     printf("mine returns: %d\n", len);
-//     printf("orig returns: %d\n", orig);
-//     printf("orig p: %p\n", &len);
-//     ft_printf("mine p: %p\n", &len);
-//     return (0);
-// }

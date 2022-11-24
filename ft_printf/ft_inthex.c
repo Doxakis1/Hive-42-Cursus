@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:51:23 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/23 19:51:19 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/11/24 10:01:53 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,9 @@ int	ft_inthex(unsigned long long num, int count, int instruction)
 		holder = num;
 		num = num % 16;
 		if (num <= 9)
-		{
 			str[index++] = num + '0';
-		}
 		else
-		{
 			str[index++] = num - 10 + instruction - 23;
-		}
 		num = holder / 16;
 	}
 	while (--index >= 0)

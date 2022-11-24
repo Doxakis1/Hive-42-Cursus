@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:47:44 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/23 19:43:43 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/11/24 09:51:12 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_intstr(char *src, int count)
 {
-	ssize_t	a; 
+	ssize_t	a;
 
 	if (src == NULL)
 	{
