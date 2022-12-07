@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:35:26 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/29 14:19:01 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/07 18:38:35 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ typedef struct s_stack
 	int				cor;
 	int				curr;
 	struct s_stack	*next;
-	struct s_stack	*previous;
 }	t_stack;
 
 int			ft_printf(const char *mains, ...);
 char		**ft_split(char const *s, char c);
 t_stack		*make_stack_a(char *str);
-t_stack		*add_to_stack(t_stack *head, char *next);
+t_stack		*add_to_stack(t_stack **head, char *next);
 t_stack		*make_empty(t_stack *head);
 long long	ft_atou(const char *str);
 

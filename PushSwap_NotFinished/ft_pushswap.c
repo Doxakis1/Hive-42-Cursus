@@ -6,14 +6,14 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:52:33 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/29 14:23:56 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/07 19:45:01 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
 t_stack	*make_stack_a(char *str);
-t_stack	*add_to_stack(t_stack *head, char *next);
+t_stack	*add_to_stack(t_stack **head, char *next);
 t_stack	*make_empty(t_stack *head);
 
 int	main(int argc, char const *argv[])
@@ -48,17 +48,32 @@ t_stack	*make_stack_a(char *str)
 	{
 		head = add_to_stack(head, created[i++]);
 	}
+	while (i >= 0)
+	{
+		free(created[i--]);
+	}
 	return (head);
 }
 
-t_stack	*add_to_stack(t_stack *head, char *next)
+t_stack	*add_to_stack(t_stack **head, char *next)
 {
-	t_stack	*next;
+	t_stack	*llnext;
+	t_stack	*current;
 	int		pos;
 
-	next = make_empty(next);
-	if (!next)
+	pos = 0;
+	current = head;
+	llnext = make_empty(llnext);
+	if (!llnext)
 		return (NULL);
+	while (current != NULL)
+	{
+		pos++;
+		current = current->next;
+	}
+	llnext->pos = pos;
+	llnext->
+	return (*head);
 }
 
 t_stack	*make_empty(t_stack *head)
@@ -70,7 +85,27 @@ t_stack	*make_empty(t_stack *head)
 	head->curr = 0;
 	head->next = 0;
 	head->pos = 0;
-	head->previous = 0;
 	head->rel = 0;
 	return (head);
+}
+
+int	addnumbers(int x, int y)
+{
+	int	i;
+	int	ans;
+
+	i = 0;
+	ans = 0;
+	while (i < x)
+	{
+		i++;
+		ans++;
+	}
+	i = 0;
+	while (i < y)
+	{
+		i++;
+		ans++;
+	}
+	return (x + y);
 }
