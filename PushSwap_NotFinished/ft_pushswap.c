@@ -6,14 +6,14 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:52:33 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/07 19:45:01 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/08 11:04:01 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-t_stack	*make_stack_a(char *str);
-t_stack	*add_to_stack(t_stack **head, char *next);
+t_stack	*make_stack_a(const char *str);
+t_stack	*add_to_stack(t_stack *head, const char *number);
 t_stack	*make_empty(t_stack *head);
 
 int	main(int argc, char const *argv[])
@@ -21,7 +21,7 @@ int	main(int argc, char const *argv[])
 	int		i;
 	t_stack	*stack;
 
-	i = 0;
+	i = 1;
 	if (argc == 2)
 	{
 		stack = make_stack_a(argv[1]);
@@ -29,10 +29,15 @@ int	main(int argc, char const *argv[])
 	else if (argc > 2)
 		while (i < argc)
 			stack = add_to_stack(stack, argv[i++]);
+	while (stack)
+	{
+		printf("Our number is:%u \n", stack->val);
+		stack = stack->next;
+	}
 	return (0);
 }
 
-t_stack	*make_stack_a(char *str)
+t_stack	*make_stack_a(const char *str)
 {
 	t_stack		*head;
 	char		**created;
@@ -40,9 +45,6 @@ t_stack	*make_stack_a(char *str)
 
 	i = 0;
 	head = NULL;
-	head = (t_stack *)malloc(sizeof(t_stack));
-	if (!head)
-		return (NULL);
 	created = ft_split(str, ' ');
 	while (created[i] != NULL)
 	{
@@ -55,7 +57,7 @@ t_stack	*make_stack_a(char *str)
 	return (head);
 }
 
-t_stack	*add_to_stack(t_stack **head, char *next)
+t_stack	*add_to_stack(t_stack *head, const char *number)
 {
 	t_stack	*llnext;
 	t_stack	*current;
@@ -66,46 +68,31 @@ t_stack	*add_to_stack(t_stack **head, char *next)
 	llnext = make_empty(llnext);
 	if (!llnext)
 		return (NULL);
-	while (current != NULL)
+	if (current == NULL)
+		head = llnext;
+	else
 	{
-		pos++;
-		current = current->next;
+		while (current->next != NULL)
+		{	
+			pos++;
+			current = current->next;
+		}
+		current->next = llnext;
 	}
-	llnext->pos = pos;
-	llnext->
-	return (*head);
-}
-
-t_stack	*make_empty(t_stack *head)
-{
-	head = (t_stack *)malloc(sizeof(t_stack));
-	if (!head)
-		return (NULL);
-	head->cor = 0;
-	head->curr = 0;
-	head->next = 0;
-	head->pos = 0;
-	head->rel = 0;
+	llnext->pos = ++pos;
+	llnext->val = ft_atou(number);
 	return (head);
 }
 
-int	addnumbers(int x, int y)
+t_stack	*make_empty(t_stack *empty)
 {
-	int	i;
-	int	ans;
-
-	i = 0;
-	ans = 0;
-	while (i < x)
-	{
-		i++;
-		ans++;
-	}
-	i = 0;
-	while (i < y)
-	{
-		i++;
-		ans++;
-	}
-	return (x + y);
+	empty = (t_stack *)malloc(sizeof(t_stack));
+	if (!empty)
+		return (NULL);
+	empty->cor = 0;
+	empty->curr = 0;
+	empty->next = 0;
+	empty->pos = 0;
+	empty->val = 0;
+	return (empty);
 }
