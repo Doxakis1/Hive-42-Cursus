@@ -1,0 +1,435 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push_swap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/09 19:41:57 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/12/10 05:51:41 by mkaratzi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+#include "ft_push_swap.h"
+
+int main(int argc, char const **argv)
+{
+	int i;
+	char **a;
+	char *solution;
+	t_stack *stack_a;
+	t_stack *stack_b;
+
+	a = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
+	i = 0;
+	if (argc < 2)
+		return 0;
+	if (argc == 2)
+		{
+			a = ft_split(argv[1], ' ');
+			while (a[i])
+				if (!(add_to_stack(&stack_a, a[i++])) 
+					|| !(add_to_stack(&stack_b, "0")))
+						return (ft_error_free(&stack_a, &stack_b, a));
+		}
+	i = 1;
+	while ( i < argc && argc > 2)
+		if (!(add_to_stack(&stack_a, argv[i++])) 
+			|| !(add_to_stack(&stack_b, "0")))
+				return (ft_error_free(&stack_a, &stack_b, a));
+	i = sort_the_stack(&stack_a);
+	if (!i)
+		return (ft_error_free(&stack_a, &stack_b, a));
+	if (i < 10)
+		solution = bruteforce(&stack_a, i);
+	while (stack_a)
+	{
+		ft_printf("we got: %d,  %d , %d\n", stack_a->nbr, stack_a->fixed , stack_a->sorted);
+		stack_a = stack_a->next;
+	}
+	ft_printf("Our solution is %s\n", solution);
+	return 0;
+}
+
+int add_to_stack(t_stack **head, const char *str)
+{
+	t_stack	*current;
+
+	current = *head;
+	if (*head == NULL)
+	{
+		(*head) = create_empty(head);
+		if (*head)
+		{
+			(*head)->nbr = ft_atou(str);
+			if ((*head)->nbr == 2147483648)
+				return (0);
+			return (1);
+		}
+	}
+	while (current->next != NULL)
+	{
+		current = current->next;
+	}
+	current->next = create_empty(&current);
+	current = current->next;
+	if (current)
+	{
+			current->nbr = ft_atou(str);
+			if (current->nbr == 2147483648)
+				return (0);
+	}
+	return (1);
+}
+
+t_stack	*create_empty(t_stack **item)
+{
+	t_stack	*new;
+
+	new = malloc(sizeof(t_stack));
+	if(new)
+		{
+			new->nbr = 0;
+			new->sorted = 0;
+			new->fixed = 0;
+			new->next = NULL;
+		}
+	item = &new;
+	return (*item);
+}
+
+int ft_error_free(t_stack **stack_a, t_stack **stack_b, char **split)
+{
+	int i;
+
+	i = 0;
+	free_stack(stack_a);
+	free_stack(stack_b);
+	if (split != NULL)
+		{
+			while (split[i] != NULL)
+				free(split[i++]);
+			free(split[i]);
+		}
+	ft_printf("Error\n");
+	return (0);
+}
+
+void free_stack(t_stack **stack)
+{
+	if ((*stack)->next != NULL)
+		free_stack(&(*stack)->next);
+	free((*stack));
+	return ;
+}
+
+int sort_the_stack(t_stack **stack_a)
+{
+	long long 	i;
+	long long	j;
+	short	test;
+	t_stack *current;
+
+	i = 1;
+	j = 1;
+	current = *stack_a;
+	while (current != NULL)
+	{
+		current = current->next;
+		i++;
+	}
+	while (j < i)
+	{
+		test = find_next_smallest(stack_a, j);
+		if (!test)
+			return (0);
+		j++;
+	}
+	assignfixed(stack_a);
+	return ((j - 1));
+}
+
+short find_next_smallest(t_stack **stack_a, long long j)
+{
+	t_stack	*current;
+	t_stack *smallest;
+
+	current = *stack_a;
+	smallest = NULL;
+	
+	while (current != NULL)
+	{
+		if ( current->sorted == 0 && smallest == NULL)
+			{
+				current->sorted = j;
+				smallest = current;
+			}
+		if (current->sorted == 0 && current->nbr < smallest->nbr)
+			{
+				current->sorted = j;
+				smallest->sorted = 0;
+				smallest = current;
+			}
+		current = current->next;
+		if (current != NULL && smallest != NULL)
+			if (current->nbr == smallest->nbr)
+				return (0);
+	}
+	return (1);
+}
+
+char *bruteforce(t_stack **stack_a, long long size)
+{
+	long long i;
+	long long j;
+	long long solution;
+
+	solution = 0;
+	i = 0;
+	while (i <= (size * 80640))
+	{
+	
+		if (check_bruteforce(i, stack_a))
+		{
+				while (i > 0)
+				{
+					solution = i % 10;
+					ft_printf("The moves are: %d\n", (solution % 8));
+					i = i / 10;
+					
+				}
+				
+			return (ft_ltoa(i));
+		}
+			
+		i++;
+	}
+	return (0);
+}
+
+
+// int move_pb(t_stack **stack_a, t_stack **stack_b);
+// // pa = 3
+// int move_pa(t_stack **stack_a, t_stack **stack_b);
+// // pb = 4
+// int move_ra(t_stack **stack_a, t_stack **stack_b);
+// // ra = 5
+// int move_rb(t_stack **stack_a, t_stack **stack_b);
+// // rb = 6
+// int move_rra(t_stack **stack_a, t_stack **stack_b);
+// // rra = 7
+// int move_rrb(t_stack **stack_a, t_stack **stack_b);
+// // rra = 8
+
+// long long make_solution_seq(long long i)
+// {
+// 	char					seq[42];
+// 	long long					holder;
+// 	int						index;
+
+// 	index = 0;
+// 	while (i > 0)
+// 	{
+// 		seq[index] = (i % 8) + '0';
+// 		i = i/8;
+// 		index++;
+// 	}
+// 	seq[index] = '\0';
+// 	return (ft_atou(seq));
+// }
+
+long long check_bruteforce(long long seq, t_stack **stack_a)
+{
+	int	holder;
+	long long keep_seq;
+
+	keep_seq = seq;
+	while (seq > 0)
+	{
+		holder = seq % 10;
+		if(!(perform_move(stack_a, (holder % 8))))
+			return (0);
+		seq = seq / 10;
+	}
+	
+	if (check_stack(*stack_a))
+	{
+			ft_printf("we solved it %d", keep_seq);
+			return (keep_seq);
+	}
+		
+	return (0);
+}
+void assignfixed(t_stack **stack)
+{
+	long long fixed;
+	t_stack *current;
+
+	current = *stack;
+	fixed = 1;
+	while ( current != NULL)
+		{
+			current->fixed = fixed;
+			fixed++;
+			current = current->next;
+		}
+	return ;
+}
+
+int perform_move(t_stack **stack_a, int move)
+{
+	if (move == 1)
+		 return (move_sa(stack_a));
+	if (move == 2)
+		 return (move_sb(stack_a));
+	if (move == 3)
+		 return (move_pb(stack_a));
+	if (move == 4)
+		 return (move_pa(stack_a));
+	// if (move == 5)
+	// 	 return (move_sa(stack_a));
+	// if (move == 6)
+	// 	 return (move_sb(stack_a));
+	// if (move == 7)
+	// 	 return (move_pb(stack_a));
+	// if (move == 8)
+	// 	 return (move_pa(stack_a));
+	return 0;
+}
+
+int move_sa(t_stack **stack_a)
+{
+	t_stack	*current;
+	t_stack	*nextnode;
+	t_stack *holder;
+
+	
+	current = *stack_a;
+	while (current != NULL)
+	{
+		if (current->next != NULL)
+			{
+				
+				nextnode = current->next;
+				if (current->fixed == 1 && nextnode->fixed == 2)
+					return (swap(current, nextnode));
+			}
+		current = current->next;
+
+	}
+	return (0);
+}
+int move_sb(t_stack **stack_a)
+{
+	t_stack	*current;
+	t_stack	*nextnode;
+	t_stack *holder;
+
+	
+	current = *stack_a;
+	while (current != NULL)
+	{
+		if (current->next != NULL)
+			{
+				
+				nextnode = current->next;
+				if (current->fixed == -2 && nextnode->fixed > -1)
+					return (swap(current, nextnode));
+			}
+		current = current->next;
+	}
+	return (0);
+}
+int move_pb(t_stack **stack_a)
+{
+	t_stack	*current;
+	t_stack	*check;
+	t_stack *holder;
+
+	
+	check = *stack_a;
+	current = *stack_a;
+	while (check!= NULL)
+	{
+		if (check->fixed == 1)
+		{
+			while(current->fixed != 1)
+			{
+				current->fixed = ((current->fixed )- 1);
+				current = current->next;
+			}
+			check->fixed = (-1);
+			check = check->next;
+			while(check != NULL)
+			{
+				check->fixed = (check->fixed - 1);
+				check = check->next;
+			}
+			return (1);
+		}
+		check = check->next;
+	}
+	return (0);
+}
+int move_pa(t_stack **stack_a)
+{
+	t_stack	*current;
+	t_stack	*check;
+	t_stack *holder;
+
+	
+	check = *stack_a;
+	current = *stack_a;
+	while (check!= NULL)
+	{
+		if (check->fixed == -1)
+		{
+			while(current->fixed != -1)
+			{
+				current->fixed = (current->fixed + 1);
+				current = current->next;
+			}
+			current->fixed = (1);
+			current = current->next;
+			while(current != NULL)
+			{
+				current->fixed = (current->fixed + 1);
+				current = current->next;
+			}
+			return (1);
+		}
+		check = check->next;
+	}
+	return (0);
+}
+int swap(t_stack *first, t_stack *second)
+{
+	long long	holderlong;
+
+	holderlong = first->nbr;
+	first->nbr = second->nbr;
+	second->nbr = holderlong;
+
+	holderlong = first->sorted;
+	first->sorted = second->sorted;
+	second->sorted = holderlong;
+	return (1);
+}
+
+int check_stack(t_stack *stack_a)
+{
+	t_stack *current;
+
+	current = stack_a;
+	while ( current != NULL)
+		{
+			if (current->fixed != current->sorted)
+				return 0;
+			ft_printf("Current->fixed%d && current->sorted %d\n", current->fixed ,current->sorted);
+			current = current->next;
+		}
+	return (1);
+}

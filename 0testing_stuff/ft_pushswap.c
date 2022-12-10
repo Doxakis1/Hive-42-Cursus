@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:52:33 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/08 11:04:01 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:59:30 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char const *argv[])
 			stack = add_to_stack(stack, argv[i++]);
 	while (stack)
 	{
-		printf("Our number is:%u \n", stack->val);
+		printf("Our number is:%d \n", stack->val);
 		stack = stack->next;
 	}
 	return (0);
@@ -96,3 +96,8 @@ t_stack	*make_empty(t_stack *empty)
 	empty->val = 0;
 	return (empty);
 }
+
+// t_stack copy_item(t_stack *item, )
+// {
+
+// }

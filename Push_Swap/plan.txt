@@ -1,0 +1,85 @@
+INSTRUCTIONS
+		You have 2 stacks named a and b.
+		• At the beginning:
+		◦ The stack a contains a random amount of negative and/or positive numbers
+		which cannot be duplicated.
+		◦ The stack b is empty.
+		• The goal is to sort in ascending order numbers into stack a. To do so you have the
+		following operations at your disposal:
+		sa (swap a): Swap the first 2 elements at the top of stack a.
+		Do nothing if there is only one or no elements.
+		sb (swap b): Swap the first 2 elements at the top of stack b.
+		Do nothing if there is only one or no elements.
+		ss : sa and sb at the same time.
+		pa (push a): Take the first element at the top of b and put it at the top of a.
+		Do nothing if b is empty.
+		pb (push b): Take the first element at the top of a and put it at the top of b.
+		Do nothing if a is empty.
+		ra (rotate a): Shift up all elements of stack a by 1.
+		The first element becomes the last one.
+		rb (rotate b): Shift up all elements of stack b by 1.
+		The first element becomes the last one.
+		rr : ra and rb at the same time.
+		rra (reverse rotate a): Shift down all elements of stack a by 1.
+		The last element becomes the first one.
+		rrb (reverse rotate b): Shift down all elements of stack b by 1.
+		The last element becomes the first one.
+		rrr : rra and rrb at the same time.
+
+Steps:
+DONE	1) Create a function that takes in either arguments as one string 
+		(using split) or individual arguments
+DONE	2) Create a function that creates an empty stack b
+DONE	3) Create fail-safe freeing mechanism
+DONE	3) Introduce sorting 
+DOING	4) Introduce instructions as per subject
+	5) Give every element a correct position
+	6) Impelement bruteforce for less than stacks less than size 9 
+		using the formula Result <= N + N(N-1)/4
+	7) Implement sorting algorithms for bigger stacks
+
+// MATHS time
+	if we generate numbers only using 1-8 and we want to generate size * 8! combinations
+	we have to find a way to exclude all numbers that are not a combination of 1 to 8.
+	to do that we generate numbers in base 8.
+	such that we get any number n from 0 until (size * 8!) but we need to exclude 0 as 0 is not 
+	a move we have therfore we use 1-8 for base 8;
+	We actually do not need stack_b to find the solution! we just need to make an equation 
+	for what happens to the numbers when each move is applied!
+
+	for 1: num = num+1;
+	for 2: 
+		if num = -1 
+			num = -2
+		if num = -2
+			num = -1
+	for 3: 
+		if num = -1 
+			num = 1;
+		stack b--;
+		stack a++;
+	for 4;
+		if num = 1;
+			num = -1;
+		stack b++;
+		stack a--;
+	for 5
+		if num = 1;
+			num = a;
+		if num > 1
+			num --;
+	for 6
+		if num = -1;
+			num = -b;
+		if num < -1
+			num --;
+	for 7
+		if num = a;
+			num = 1;
+		if num < a >= 1 
+			num++;
+	for 8 
+		if num = -b;
+			num = -1;
+		if num > -b <= -1 
+			num--'
