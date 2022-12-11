@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:40:32 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/11 23:22:22 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/12 01:19:35 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,7 @@ int incriment(t_instructions **to_increase, int stacksize)
 	int i;
 
 	i = 0;
-	if((*to_increase)->solution[i] != '\0')
-			if((*to_increase)->solution[i] == '0')
-			{
-				(*to_increase)->solution[i] = calculatenext(&(*to_increase), i, stacksize);
-				return (1);
-			}
+
 	while ((*to_increase)->solution[i] != '\0')
 	{ 
 		if ((*to_increase)->solution[i] < '8' && calculatenext(&(*to_increase), i, stacksize))
@@ -123,6 +118,9 @@ int calculatenext(t_instructions **string, int index, int stacksize)
 			if (a_stack >= 2)
 				return (c);
 		}
+		if (c == '5')
+			if (a_stack >= 1)
+				return (c);
 		if (c == '1' )
 		{
 			if (i >= 1)
