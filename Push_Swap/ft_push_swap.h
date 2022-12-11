@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:41:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/10 12:34:45 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/11 21:30:55 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,20 @@ int			ft_intdigits(int number);
 int			ft_intudigits(unsigned int number);
 
 //Currently used in Push_Swap
-char		**ft_split(char const *s, char c);
-int			add_to_stack(t_stack **head, const char *str);
-t_stack		*create_empty(t_stack **item);
-long long	ft_atou(const char *str);
-int 		ft_error_free(t_stack **stack_a, char **split);
-void 		free_stack(t_stack **stack);
-int			sort_the_stack(t_stack **stack_a);
-short 		find_next_smallest(t_stack **stack_a, long j);
-char		*ft_ltoa(long n);
-void 		assignfixed(t_stack **stack);
-int 		incriment(t_instructions **to_increase);
-int			math_check(t_instructions **solved, long fixed, long sorted, long stack_size);
-int			checks_out(t_stack **stack_a, t_instructions **solution, int size);
+char			**ft_split(char const *s, char c);
+int				add_to_stack(t_stack **head, const char *str);
+t_stack			*create_empty(t_stack **item);
+long long		ft_atou(const char *str);
+int 			ft_error_free(t_stack **stack_a, char **split);
+void 			free_stack(t_stack **stack);
+int				sort_the_stack(t_stack **stack_a);
+short 			find_next_smallest(t_stack **stack_a, long j);
+char			*ft_ltoa(long n);
+void 			assignfixed(t_stack **stack);
+int 			incriment(t_instructions **to_increase, int stacksize);
+int				math_check(t_instructions **solved, long fixed, long sorted, long stack_size);
+int				checks_out(t_stack **stack_a, t_instructions **solution, int size);
 t_instructions *bruteforce(t_stack **stack_a, int i, t_instructions **solution);
+int 			calculatenext(t_instructions **string, int index, int stacksize);
 
 #endif
