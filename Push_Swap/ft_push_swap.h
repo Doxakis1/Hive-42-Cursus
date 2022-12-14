@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:41:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/11 21:30:55 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/12 09:40:13 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,7 @@ int				math_check(t_instructions **solved, long fixed, long sorted, long stack_s
 int				checks_out(t_stack **stack_a, t_instructions **solution, int size);
 t_instructions *bruteforce(t_stack **stack_a, int i, t_instructions **solution);
 int 			calculatenext(t_instructions **string, int index, int stacksize);
+t_instructions *new_bruteforce(t_stack **stack_a, int i, t_instructions **solution);
+int 			new_incriment(t_instructions **to_increase, int stacksize);
 
 #endif

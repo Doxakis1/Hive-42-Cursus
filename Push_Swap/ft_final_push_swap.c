@@ -6,60 +6,61 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:40:32 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/12 01:19:35 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/12 09:32:54 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_push_swap.h"
 
-int main(int argc, char const **argv)
-{
-	int i;
-	char **a;
-	t_instructions *solution;
-	t_stack *stack_a;
+// int main(int argc, char const **argv)
+// {
+// 	int i;
+// 	char **a;
+// 	t_instructions *solution;
+// 	t_stack *stack_a;
 
-	a = NULL;
-	stack_a = NULL;
-	solution = malloc(sizeof(t_instructions));
-	i = 0;
-	if (argc < 2 || !solution)
-		return 0;
-	solution->solution = NULL;
-	if (argc == 2)
-		{
-			a = ft_split(argv[1], ' ');
-			while (a[i])
-				if (!(add_to_stack(&stack_a, a[i++])))
-						return (ft_error_free(&stack_a, a));
-		}
-	i = 1;
-	while ( i < argc && argc > 2)
-		if (!(add_to_stack(&stack_a, argv[i++])))
-				return (ft_error_free(&stack_a, a));
-	i = sort_the_stack(&stack_a);
-	if (!i)
-		return (ft_error_free(&stack_a, a));
-	if (i < 101)
-		solution = bruteforce(&stack_a, i, &solution);
-	if (solution->solution != NULL)
-	{
-		while (stack_a)
-		{
-			ft_printf("\nWE GOT: %d,  in sorted pos: %d\n", stack_a->nbr, stack_a->sorted);
-			stack_a = stack_a->next;
-		}
+// 	a = NULL;
+// 	stack_a = NULL;
+// 	solution = malloc(sizeof(t_instructions));
+// 	i = 0;
+// 	if (argc < 2 || !solution)
+// 		return 0;
+// 	solution->solution = NULL;
+// 	if (argc == 2)
+// 		{
+// 			a = ft_split(argv[1], ' ');
+// 			while (a[i])
+// 				if (!(add_to_stack(&stack_a, a[i++])))
+// 						return (ft_error_free(&stack_a, a));
+// 		}
+// 	i = 1;
+// 	while ( i < argc && argc > 2)
+// 		if (!(add_to_stack(&stack_a, argv[i++])))
+// 				return (ft_error_free(&stack_a, a));
+// 	i = sort_the_stack(&stack_a);
+// 	if (!i)
+// 		return (ft_error_free(&stack_a, a));
+// 	if (i < 101)
+// 		solution = bruteforce(&stack_a, i, &solution);
+// 	if (solution->solution != NULL)
+// 	{
+// 		while (stack_a)
+// 		{
+// 			ft_printf("\nWE GOT: %d,  in sorted pos: %d\n", stack_a->nbr, stack_a->sorted);
+// 			stack_a = stack_a->next;
+// 		}
 		
-	}
-	return 0;
-}
+// 	}
+// 	return 0;
+// }
 
 int incriment(t_instructions **to_increase, int stacksize)
 {
 	int i;
 
 	i = 0;
+	//ft_printf("We tresting %s\n", (*to_increase)->solution);
 
 	while ((*to_increase)->solution[i] != '\0')
 	{ 
