@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:59:44 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/14 20:02:38 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 03:12:46 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,80 +121,66 @@ int	math_check(t_instructions **sol, long fixed, long sorted, long stack_size)
 	a_stack = stack_size;
 	b_stack = 0;
 	i = 0;
-	while ((*sol)->solution[i]  != '\0' && (*sol)->solution[i] != '0')
+	while ((*sol)->solution[i] != '\0' && (*sol)->solution[i] != '0')
 	{	
-		if ((*sol)->solution[i] == '1')
+		if ((*sol)->solution[i] == '1' && a_stack >= 2)
 		{
-			if (a_stack < 2)
-				return (0);
 			if (fixed == 1)
 				fixed = 2;
 			else if (fixed == 2)
 				fixed = 1;
 		}
-		else if ((*sol)->solution[i] == '6')
+		else if ((*sol)->solution[i] == '6' && b_stack >= 2)
 		{
-			if (b_stack < 2)
-				return (0);
 			if (fixed == -1)
 				fixed = -2;
 			else if (fixed == -2)
-				fixed = 1;
+				fixed = -1;
 		}
-		else if ((*sol)->solution[i] == '2')
+		else if ((*sol)->solution[i] == '2' && b_stack >= 1)
 		{
-			if (b_stack > 1)
-				return (0);
 			if (fixed == -1)
 				fixed = 1;
-			else if (fixed != -1)
+			else if (fixed < -1)
 				fixed++;
 		}
-		else if ((*sol)->solution[i] == '5')
+		else if ((*sol)->solution[i] == '5' && a_stack >= 1)
 		{
-			if (a_stack <= 1)
-				return (0);
 			if (fixed == 1)
 				fixed = -1;
-			else if (fixed != 1)
+			else if (fixed > 1)
 				fixed--;
 		}
-		else if ((*sol)->solution[i] == '3')
+		else if ((*sol)->solution[i] == '3' && a_stack >= 2)
 		{
-			if (a_stack < 2)
-				return (0);
 			if (fixed == 1)
 				fixed = a_stack;
-			else  if (fixed != 1 && fixed > 0)
+			else if (fixed > 1)
 				fixed--;
 		}
-		else if ((*sol)->solution[i] == '7')
+		else if ((*sol)->solution[i] == '7' && b_stack >= 2)
 		{
-			if (b_stack < 2)
-				return (0);
 			if (fixed == (-1))
-				fixed = (-1)*(b_stack);
-			else if (fixed != (-1) && fixed < 0)
+				fixed = (-1) * (b_stack);
+			else if (fixed < -1)
 				fixed++;
 		}
-		else if ((*sol)->solution[i] == '4')
+		else if ((*sol)->solution[i] == '4' && a_stack >= 2)
 		{
-			if (a_stack < 2)
-				return (0);
 			if (fixed == a_stack)
 				fixed = 1;
 			else if (fixed > 0)
 				fixed++;
 		}
-		else if ((*sol)->solution[i] == '8')
+		else if ((*sol)->solution[i] == '8' && b_stack >= 2)
 		{
-			if (b_stack < 2)
-				return (0);
 			if (fixed == ((-1) * b_stack))
 				fixed = -1;
 			else if (fixed < 0)
 				fixed--;
 		}
+		else
+			break ;
 		a_stack = calculate_stacksize((*sol)->solution, stack_size, i, 1);
 		b_stack = calculate_stacksize((*sol)->solution, stack_size, i, 2);
 		i++;

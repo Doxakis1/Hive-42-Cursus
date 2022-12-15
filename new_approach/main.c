@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:44 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/14 19:50:22 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 02:56:17 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ int	main(int argc, char const **argv)
 		i = sort_the_stack(&stack_a);
 		if (!i)
 			return (ft_error_free(&stack_a, a));
-		if (i <= 7)
+		if (i <= 6)
 			solution = bruteforce(&stack_a, i, &solution);
-		if (solution->solution != NULL)
-			print_solution(solution->solution);
 	}
-	return (0);
+	return (print_solution(solution->solution));
 }

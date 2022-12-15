@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:24 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/14 19:50:36 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 02:57:53 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	print_solution(char *solution)
 	int	i;
 
 	i = 0;
-	while (solution[i] != '\0' && solution[i] != '0')
+	while (solution && solution[i] != '\0' && solution[i] != '0')
 	{
 		if (solution[i] == '1')
 			ft_printf("sa\n");
