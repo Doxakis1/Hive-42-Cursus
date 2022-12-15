@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:41:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/15 05:21:24 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:50:30 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ long			check_move_for_b(int a_st, int b_st, int fixed, int move);
 //smart solution
 t_instructions	*smart_solution(t_stack **stack_a, int size,
 					t_instructions **sol);
+int				construct_solution(t_stack **a_st, int size,
+					t_instructions **sol);
+int				create_b_stack(t_stack **b_st, int size);
 
 // printing
 int				print_solution(char *solution);

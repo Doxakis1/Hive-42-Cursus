@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:42:00 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/15 05:24:04 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:30:29 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	assignfixed(t_stack **stack, int size)
 	{
 		current->fixed = fixed;
 		current->str = make_into_str(fixed, size);
-		ft_printf("String looks like: %s\n", current->str);
 		fixed++;
 		current = current->next;
 	}

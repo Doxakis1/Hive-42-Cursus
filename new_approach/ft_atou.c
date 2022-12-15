@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:44:27 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/14 17:05:49 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:39:11 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ long	ft_atou(const char *str)
 		i++;
 	while (str[i] != '\0')
 	{
-		if (str[i] >= '0' && str[i] <= '9' 
+		if (str[i] >= '0' && str[i] <= '9'
 			&& final <= 2147483647 && final >= -2147483648)
 			final = final * 10 + str[i] - '0';
 		else

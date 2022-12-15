@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_push_swap_main.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:44 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/15 04:21:48 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:51:25 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	main(int argc, char const **argv)
 		i = sort_the_stack(&stack_a);
 		if (!i)
 			return (ft_error_free(&stack_a, a));
-		if (i <= 7)
+		if (i < 7)
 			solution = bruteforce(&stack_a, i, &solution);
-		if (i >= 8)
+		if (i >= 7)
 			solution = smart_solution(&stack_a, i, &solution);
 	}
 	return (print_solution(solution->solution));
