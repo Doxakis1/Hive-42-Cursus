@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:41:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/14 20:02:42 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 04:23:27 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ int				math_check(t_instructions **sol, long fixed, long sorted,
 					long stack_size);
 int				calculate_stacksize(char *instructions, int size, int index,
 					int a);
+long			check_move_for_a(int a_st, int b_st, int fixed, int move);
+long			check_move_for_b(int a_st, int b_st, int fixed, int move);
 
+//smart solution
+t_instructions	*smart_solution(t_stack **stack_a, int size,
+					t_instructions **sol);
+
+// printing
 int				print_solution(char *solution);
+
 #endif
