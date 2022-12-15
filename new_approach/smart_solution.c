@@ -6,19 +6,18 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 04:22:06 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/15 04:25:33 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 04:58:54 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-t_instructions	*smart_solution(t_stack **stack_a, int size,
-					t_instructions **sol)
+t_instructions	*smart_solution(t_stack **stack_a, int size, t_instructions **sol)
 {
 	int	k;
 	int	j;
 
-	k = size * 3000;
+	k = size * 3;
 	j = 0;
 	(*sol)->solution = (char *)malloc(sizeof(char) * (k + 1));
 	if (!(*sol)->solution)

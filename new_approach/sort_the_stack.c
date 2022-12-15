@@ -6,13 +6,13 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:42:00 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/14 17:09:27 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 05:24:04 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void	assignfixed(t_stack **stack);
+void	assignfixed(t_stack **stack, int size);
 short	find_next_smallest(t_stack **stack_a, long j);
 
 int	sort_the_stack(t_stack **stack_a)
@@ -37,11 +37,11 @@ int	sort_the_stack(t_stack **stack_a)
 			return (0);
 		j++;
 	}
-	assignfixed(stack_a);
+	assignfixed(stack_a, i);
 	return ((j - 1));
 }
 
-void	assignfixed(t_stack **stack)
+void	assignfixed(t_stack **stack, int size)
 {
 	long	fixed;
 	t_stack	*current;
@@ -51,6 +51,8 @@ void	assignfixed(t_stack **stack)
 	while (current != NULL)
 	{
 		current->fixed = fixed;
+		current->str = make_into_str(fixed, size);
+		ft_printf("String looks like: %s\n", current->str);
 		fixed++;
 		current = current->next;
 	}

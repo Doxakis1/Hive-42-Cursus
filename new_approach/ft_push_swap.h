@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:41:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/15 04:23:27 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/15 05:21:24 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_stack {
 	long			nbr;
 	long			sorted;
 	long			fixed;
+	char			*str;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -39,9 +40,11 @@ void			free_stack(t_stack **stack);
 int				sort_the_stack(t_stack **stack_a);
 short			find_next_smallest(t_stack **stack_a, long j);
 char			*ft_ltoa(long n);
-void			assignfixed(t_stack **stack);
+void			assignfixed(t_stack **stack, int size);
 int				make_from_one_string(char **str, const char *given,
 					t_stack **head);
+char			*make_into_str(long n, int size);
+int				fixed_size(int size);
 int				ft_printf(const char *mains, ...);
 size_t			ft_strlen(const char *s);
 t_instructions	*bruteforce(t_stack **stack_a, int stacksize,
