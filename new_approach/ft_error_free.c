@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:40:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/15 03:16:00 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:45:43 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,30 @@
 
 void	free_stack(t_stack **stack);
 
-int	ft_error_free(t_stack **stack_a, char **split)
+int	ft_error_free(t_stack **stack_a, char **split, int check)
 {
 	int	i;
 
 	i = 0;
 	free_stack(stack_a);
-	if (split != NULL)
+	if (split)
 	{
-		while (split[i] != NULL)
+		while (split[i])
 			free(split[i++]);
 		free(split[i]);
+		free(*split);
 	}
-	write(2, "Error\n", 7);
+	if (check)
+		write(2, "Error\n", 7);
 	return (0);
 }
 
 void	free_stack(t_stack **stack)
 {
-	if ((*stack)->next != NULL)
+	if ((*stack)->next)
 		free_stack(&(*stack)->next);
+	if ((*stack)->str)
+		free((*stack)->str);
 	free((*stack));
 	return ;
 }

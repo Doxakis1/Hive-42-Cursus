@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:41:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/15 10:50:30 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:05:42 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char			**ft_split(char const *s, char c);
 int				add_to_stack(t_stack **head, const char *str);
 t_stack			*create_empty(t_stack **item);
 long			ft_atou(const char *str);
-int				ft_error_free(t_stack **stack_a, char **split);
+int				ft_error_free(t_stack **stack_a, char **split, int check);
 void			free_stack(t_stack **stack);
 int				sort_the_stack(t_stack **stack_a);
 short			find_next_smallest(t_stack **stack_a, long j);
@@ -69,6 +69,6 @@ int				construct_solution(t_stack **a_st, int size,
 int				create_b_stack(t_stack **b_st, int size);
 
 // printing
-int				print_solution(char *solution);
+int				print_solution(char **solution, int i);
 
 #endif

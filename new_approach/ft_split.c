@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:05:38 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/14 17:06:46 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/20 13:25:58 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static	char	**final1(char **final, const char *str, char d, size_t counter)
 	{
 		j = find_next_length(buf, str, d);
 		final[loop] = (char *)malloc(j + 1);
-		if (final[loop] == NULL)
+		if (!final[loop])
 		{
 			while (loop > 0)
 				free(final[loop--]);
