@@ -3,22 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaratzi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 22:19:28 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/21 18:30:05 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:15:55 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "mlx.h"
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
+	void	*mlx; //We create a pointer to our window initialization
+	void	*mlx_win; //We create a pointer to the window that our program will be using
+	int		x;
+	int		y;
 
-	mlx = mlx_init();
-	mlx_new_window(mlx, 920, 80, "Hello world!");
-	mlx_loop(mlx);
-	//mlx_mouse_hide();
+	x = 0;
+	y = 0;
+	mlx = mlx_init(); //We initialized mlx and stored its address to "mlx"
+
+	
+	mlx_win = mlx_new_window(mlx, 690, 420, "Tewsting time!"); 
+	//We initialized our window and stored its address to "mlx_win"
+	
+	while (x <= 690)
+	{
+		y = 0;
+		while(y <= 420)
+		{
+
+			if ( (y) % 42 == 0)
+				mlx_pixel_put(mlx, mlx_win, x, y, 0x42);
+			y++;
+		}	
+		x++;
+	}
+		
+	//mlx_pixel_put(mlx, mlx_win, (690/2 +1), (420/2 + 1), 0xFFFFFF);
+	
+	mlx_loop(mlx); //we start the window loop
+	
+	return (0);
 }
