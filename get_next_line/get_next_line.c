@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 18:06:01 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/23 17:27:32 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/03 14:49:20 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_next_line(int fd);
 
 char	*get_next_line(int fd)
 {
-	static char	*k[1024] = {0};
+	static char	*k[1024];
 	int			a;
 	char		*gnl;
 	char		*b;
