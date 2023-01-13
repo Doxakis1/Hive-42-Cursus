@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:05:38 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/21 02:13:07 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:03:11 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static	char	**final1(char **final, const char *str, char d, size_t counter)
 		final[loop] = n_str(final[loop], str, buf, j);
 		loop++;
 	}
-	free(&buf);
+	free(buf);
 	final[loop] = NULL;
 	return (final);
 }

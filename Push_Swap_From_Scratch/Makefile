@@ -4,7 +4,7 @@ COMPILE_FLAGS = -c -Wall -Wextra -Werror
 .PHONY: all clean fclean re
 
 compile:
-	gcc *.c ft_printf/ft_printf/*.c libft/libft/*.c -o push_swap && make clean
+	gcc *.c ft_printf/*.c libft/*.c -o push_swap && make clean
 
 clean:
 	rm -f *.o

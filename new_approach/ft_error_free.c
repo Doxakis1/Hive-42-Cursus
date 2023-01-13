@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:40:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/21 02:12:34 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:02:46 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_stack(t_stack **stack)
 	if ((*stack)->next)
 		free_stack(&(*stack)->next);
 	if ((*stack)->str)
-		free(&(*stack)->str);
-	free(&(*stack));
+		free((*stack)->str);
+	free((*stack));
 	return ;
 }
