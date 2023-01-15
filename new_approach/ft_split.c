@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:05:38 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/13 18:03:11 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:40:22 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,29 +58,26 @@ static	int	count_split_strings(char const *str, char delimeter, size_t len)
 
 static	char	**final1(char **final, const char *str, char d, size_t counter)
 {
-	size_t	*buf;
+	size_t	buf[1];
 	size_t	j;
 	size_t	loop;
 
-	buf = malloc(1);
 	loop = 0;
-	(*buf) = 0;
+	buf[0] = 0;
 	while (loop < counter)
 	{
-		j = find_next_length(buf, str, d);
+		j = find_next_length(&buf[0], str, d);
 		final[loop] = (char *)malloc(j + 1);
 		if (!final[loop])
 		{
 			while (loop > 0)
 				free(final[loop--]);
 			free(final[0]);
-			free(buf);
 			return (NULL);
 		}
-		final[loop] = n_str(final[loop], str, buf, j);
+		final[loop] = n_str(final[loop], str, &buf[0], j);
 		loop++;
 	}
-	free(buf);
 	final[loop] = NULL;
 	return (final);
 }

@@ -1,43 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_free.c                                    :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 16:40:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/13 18:45:02 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/10/27 18:29:17 by mkaratzi          #+#    #+#             */
+/*   Updated: 2023/01/13 18:39:35 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void	free_stack(t_stack **stack);
-
-int	ft_error_free(t_stack **stack_a, char **split, int check)
+static int	absval(int x)
 {
-	int	i;
-
-	i = 0;
-	free_stack(stack_a);
-	if (split)
-	{
-		while (split[i])
-			free(&split[i++]);
-		free(&split[i]);
-		free(&split);
-	}
-	if (check)
-		write(2, "Error\n", 7);
-	return (0);
+	if (x < 0)
+		x *= -1;
+	return (x);
 }
 
-void	free_stack(t_stack **stack)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	if ((*stack)->next)
-		free_stack(&(*stack)->next);
-	if ((*stack)->str)
-		free((*stack)->str);
-	free((*stack));
-	return ;
+	if ((size_t) absval((char *) src - (char *) dst) >= n)
+		while (n-- > 0)
+			((char *) dst)[n] = ((char *) src)[n];
+	return (dst);
 }

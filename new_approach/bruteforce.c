@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:53:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/13 15:55:26 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:42:27 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_instructions	*bruteforce(t_stack **stack_a, int size, t_instructions **sol)
 		if (checks_out(&(*stack_a), &(*sol), size))
 			return ((*sol));
 	}
-	free((*sol)->solution);
+	free(&(*sol)->solution);
 	(*sol)->solution = NULL;
 	return ((*sol));
 }

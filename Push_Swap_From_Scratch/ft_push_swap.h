@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:13:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/10 09:14:15 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:48:11 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
+#define MAX_STACK_SIZE 1024
 
 typedef struct s_stack {
 	long			nbr;
 	long			sorted;
 	long			fixed;
-	struct s_stack	*next;
+	char			str_num[5];
 }	t_stack;
 
 typedef struct s_instructions {
 	char			*solution;
 }	t_instructions;
+
 
 
 int			ft_printf(const char *mains, ...);
@@ -47,7 +49,6 @@ int			ft_tolower(int c);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-void		*ft_memchr(const void *s, int c, size_t n);
 void		*ft_memchr(const void *s, int c, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
@@ -78,22 +79,6 @@ int			ft_intdigits(int number);
 int			ft_intudigits(unsigned int number);
 
 //Currently used in Push_Swap
-char			**ft_split(char const *s, char c);
-int				add_to_stack(t_stack **head, const char *str);
-t_stack			*create_empty(t_stack **item);
-long long		ft_atou(const char *str);
-int 			ft_error_free(t_stack **stack_a, char **split);
-void 			free_stack(t_stack **stack);
-int				sort_the_stack(t_stack **stack_a);
-short 			find_next_smallest(t_stack **stack_a, long j);
-char			*ft_ltoa(long n);
-void 			assignfixed(t_stack **stack);
-int 			incriment(t_instructions **to_increase, int stacksize);
-int				math_check(t_instructions **solved, long fixed, long sorted, long stack_size);
-int				checks_out(t_stack **stack_a, t_instructions **solution, int size);
-t_instructions *bruteforce(t_stack **stack_a, int i, t_instructions **solution);
-int 			calculatenext(t_instructions **string, int index, int stacksize);
-t_instructions *new_bruteforce(t_stack **stack_a, int i, t_instructions **solution);
-int 			new_incriment(t_instructions **to_increase, int stacksize);
+int			make_the_stack(t_stack *stack_a, const char **av);
 
 #endif
