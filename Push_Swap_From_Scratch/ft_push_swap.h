@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:13:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/15 16:48:11 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:35:17 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int			ft_intudigits(unsigned int number);
 
 //Currently used in Push_Swap
 int			make_the_stack(t_stack *stack_a, const char **av);
+long		ft_atou(const char *str);
 
 #endif
