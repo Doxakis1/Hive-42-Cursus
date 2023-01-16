@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:19:00 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/16 16:36:33 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:23:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@ int	main(int ac, char const **av)
 	}
 	stack_size = 0;
 	if (ac >= 2)
-		stack_size = make_the_stack(&stack_a[0], av);
+		stack_size = make_the_stack(&stack_a[0], av, ac);
 		
 	
 	
 	return (1);
 }
 
-int	make_the_stack(t_stack *stack_a, const char **av)
+int	make_the_stack(t_stack *stack_a, const char **av, int ac)
 {
 	int i = 0;
 	int j = 0;
 	
-	(*av)++;
+	
 	while(i < 3)
 	{
-		if ((*av) != NULL)
-			ft_printf("Hello suckers from %d and %d\n", ft_atou((*av)++), j++);
+		if (++j < ac)
+			printf("Hello suckers from %s %lu and %d\n", av[j], ft_atou(av[j]), j);
 		i++;
 	}
 		
