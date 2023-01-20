@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:13:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/20 19:17:06 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:22:43 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
-#define MAX_STACK_SIZE 1024
+
+# define MAX_STACK_SIZE 1024
 
 typedef struct s_stack {
 	long			nbr;
 	long			sorted;
 	long			fixed;
-	char			str_num[5];
+	int				in_use;
 }	t_stack;
 
 typedef struct s_instructions {
 	char			*solution;
 }	t_instructions;
-
-
 
 int			ft_printf(const char *mains, ...);
 int			ft_isalpha(int a);
@@ -79,7 +78,8 @@ int			ft_intdigits(int number);
 int			ft_intudigits(unsigned int number);
 
 //Currently used in Push_Swap
-int			make_the_stack(t_stack *stack_a, const char **av, int ac);
+int			make_the_stack(t_stack *stack_a, t_stack *stack_b, const char **av,
+			int ac);
 long		ft_atou(const char *str);
 int			ft_atou_to_dest(const char *str, long *dst);
 
