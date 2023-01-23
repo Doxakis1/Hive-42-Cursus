@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:19:00 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/23 11:58:55 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:38:36 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,24 @@ int sort_the_stack(t_stack *stack_a, int stack_size)
 {
 		t_stack	*stack_b;
 		int		bitshift;
-
+		int		i = 0;
 		bitshift = 7;		
 		stack_b = NULL;
 
-		move_to_stack(&stack_a, &stack_b, bitshift);
-		move_to_stack(&stack_a, &stack_b, bitshift);
-		move_to_stack(&stack_a, &stack_b, bitshift);
-		move_to_stack(&stack_a, &stack_b, bitshift);
-
-	while(bitshift-- > 0)
+	
+	while(stack_a)
 	{
-		ft_printf("We got: %d\n", stack_b->nbr);
+		ft_printf("stack_a->nbr is %d\n", stack_a->nbr);
+		push_to_stack(&stack_a, &stack_b, bitshift);
+	}
+	while (i-- >= 0 && stack_a != NULL)
+	{
+		ft_printf("At A stack stayed:%d\n", stack_a->nbr);
+		stack_a = stack_a->next;
+	}
+	while (stack_b->nbr != 12)
+	{
+		ft_printf("At B stack stayed:%d\n", stack_b->nbr);
 		stack_b = stack_b->next;
 	}
 		return (1);

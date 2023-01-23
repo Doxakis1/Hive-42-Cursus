@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:13:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/23 11:43:24 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:19:39 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ int			link_the_stack(t_stack *stack_a, int stacksize);
 
 //the moves
 int			reverse_rotate_move(t_stack **stack_given, int identifier);
-int			move_to_stack(t_stack **src, t_stack **dst, int bitshift);
+int			push_to_stack(t_stack **src, t_stack **dst, int bitshift);
 #endif
