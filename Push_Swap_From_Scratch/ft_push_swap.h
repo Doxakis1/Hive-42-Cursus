@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:13:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/20 20:22:43 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:43:24 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
 
 # define MAX_STACK_SIZE 1024
 
 typedef struct s_stack {
 	long			nbr;
-	long			sorted;
-	long			fixed;
 	int				in_use;
+	struct s_stack	*next;
+	struct s_stack	*previous;
 }	t_stack;
 
 typedef struct s_instructions {
@@ -78,9 +77,13 @@ int			ft_intdigits(int number);
 int			ft_intudigits(unsigned int number);
 
 //Currently used in Push_Swap
-int			make_the_stack(t_stack *stack_a, t_stack *stack_b, const char **av,
-			int ac);
+int			make_the_stack(t_stack *stack_a, const char **av, int ac);
 long		ft_atou(const char *str);
 int			ft_atou_to_dest(const char *str, long *dst);
+int			sort_the_stack(t_stack *stack_a, int stack_size);
+int			link_the_stack(t_stack *stack_a, int stacksize);
 
+//the moves
+int			reverse_rotate_move(t_stack **stack_given, int identifier);
+int			move_to_stack(t_stack **src, t_stack **dst, int bitshift);
 #endif
