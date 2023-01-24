@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:13:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/23 17:41:11 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:29:01 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,5 @@ int			ft_power(int num, int power);
 int			reverse_rotate_move(t_stack **stack_given, int identifier);
 int			push_to_stack(t_stack **src, t_stack **dst, int character);
 int 		rotate_move(t_stack **stack_given, int identifier);
+int 		check_more_rotates(t_stack **stack_given, int bitshift, int check, int stack_size);
 #endif
