@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:19:00 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/26 14:52:32 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:48:58 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,41 +74,62 @@ int assign_the_chains(t_stack *stack, int stacksize, int identifier)
 {
 	t_stack *current;
 	int currentnum;
+	int moves;
 	int finish;
-	int i;
+	int i = 0;
 	int direction;
 
 	direction = 0;
-	if(identifier = 'a')
+	if(identifier == 'a')
 		direction = 1;
-	if(identifier = 'b')
+	if(identifier == 'b')
 		direction = -1;
-	current = &stack[0];
-	while(i <= stacksize  && identifier)
+	
+	while(i < stacksize  && identifier)
 	{
+		
+		current = &stack[0];
 		currentnum = current->nbr;
-		finish = current->nbr;
+		moves = 1;
+		finish = 0;
 		current = current->next;
-		while( current->nbr != finish)
+		while(currentnum)
 		{
-			if (current->nbr =)
+			if (current->nbr == currentnum + direction)
+				{
+					current->in_use = finish;
+					moves++;
+					currentnum = finish;
+				}
+			else
+				moves++;
+			current = current->next;
 		}
+		if(moves >= stacksize / 2)
+			moves -= stacksize - 1;
+		stack[0].my_biggest_chain = moves;
+		stack = stack[0].next;
+		i++;
 	}
-
+	return (1);
 }
 int sort_the_stack(t_stack *stack_a, int a_stack_size)
 {
 		t_stack	*stack_b;
 		int		i;
 
+		i = 0;
+		
+
 		assign_the_chains(stack_a, a_stack_size, 'a');
 
-		i = 0;
 		while (++i <= a_stack_size && stack_a)
 		{
-			ft_printf("A stack: %d\n", stack_a->nbr);
+			if(stack_a->my_biggest_chain < 20 && stack_a->my_biggest_chain > -20)
+				ft_printf("Nbr is: %d and chain is made in %dmoves for %d numbers\n", stack_a->nbr, stack_a->my_biggest_chain, (a_stack_size - stack_a->nbr));
 			stack_a = stack_a->next;
 		}
+		
 		return (1);
 }
 
