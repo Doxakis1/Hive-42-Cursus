@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   ft_intstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 16:38:46 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/02/20 16:07:33 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/11/23 18:47:44 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/11/24 09:51:12 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
-# include "ft_printf.h"
-# include <unistd.h>
-# include <signal.h>
+#include "ft_printf.h"
 
-typedef struct active_pid_s{
-	int pid;
-	int signal;
-} active_pid_t;
+int	ft_intstr(char *src, int count)
+{
+	ssize_t	a;
 
-
-
-#endif
+	if (src == NULL)
+	{
+		write(1, "(null)", 6);
+		count += 6;
+		return (count);
+	}
+	a = ft_strlen((const char *)src);
+	write(1, src, a);
+	count += a;
+	return (count);
+}

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   ft_intdigit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 16:38:46 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/02/20 16:07:33 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/11/23 18:53:35 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/11/23 18:54:27 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
-# include "ft_printf.h"
-# include <unistd.h>
-# include <signal.h>
+#include "ft_printf.h"
 
-typedef struct active_pid_s{
-	int pid;
-	int signal;
-} active_pid_t;
+int	ft_intdigits(int number)
+{
+	int	counter;
 
-
-
-#endif
+	counter = 0;
+	if (number <= 0)
+		counter++;
+	while (number)
+	{
+		counter++;
+		number = number / 10;
+	}
+	return (counter);
+}

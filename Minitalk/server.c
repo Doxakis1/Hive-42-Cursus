@@ -6,32 +6,37 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:39:19 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/02/17 17:21:07 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:13:22 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
+#include "server.h"
 
-void handle_signals(int signal, siginfo_t *singal_info)
+active_pid_t receiving_pid;
+
+void handle_signals(int signal, siginfo_t *singal_info, void *context)
 {
-	printf("we received a signal from: %d\n", singal_info->si_pid);
+	(void)context;
+	if (!receiving_pid.pid)
+		receiving_pid.pid = singal_info->si_pid;
+	ft_printf("we received a signal from: %d\n", singal_info->si_pid);
 }
 
 int main(void)
 {
+	receiving_pid.pid = 0;
+	receiving_pid.signal = 0;
 	struct sigaction my_handler;
 
-	my_handler.__sigaction_u.__sa_sigaction = (void *)0;
-	my_handler.__sigaction_u.__sa_handler = (void *)handle_signals;
+	my_handler.sa_sigaction = &handle_signals;
 	my_handler.sa_flags = SA_SIGINFO;
 	sigemptyset(&(my_handler.sa_mask));
 	sigaction(SIGTSTP, &my_handler, NULL);
-	printf("Server is now running and our pid is: %d and our parent pid is: %d\n", getpid(), getppid());
-	while(1)
+	ft_printf("Our server has the pid: %d\n", getpid());
+	while(!receiving_pid.pid)
 	{
-		
+		ft_printf("We have receiving_pid = %d\n", receiving_pid.pid);
+		sleep(2);
 	}
 	return 0;
 }

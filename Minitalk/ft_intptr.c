@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   ft_intptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 16:38:46 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/02/20 16:07:33 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/11/23 18:51:56 by mkaratzi          #+#    #+#             */
+/*   Updated: 2022/11/23 19:44:32 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
-# include "ft_printf.h"
-# include <unistd.h>
-# include <signal.h>
+#include "ft_printf.h"
 
-typedef struct active_pid_s{
-	int pid;
-	int signal;
-} active_pid_t;
-
-
-
-#endif
+int	ft_intptr(unsigned long long pointer, int count)
+{
+	write(1, "0x", 2);
+	count += 2;
+	if (pointer == 0)
+	{
+		write(1, "0", 1);
+		count++;
+		return (count);
+	}
+	count = ft_inthex(pointer, count, 'x');
+	return (count);
+}
