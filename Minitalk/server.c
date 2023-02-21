@@ -6,13 +6,24 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:39:19 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/02/21 16:15:36 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:52:06 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
 active_pid_t sender;
+
+int ft_power_two(int exp) {
+    int result = 1;
+
+    while (exp > 0) {
+        result *= 2;
+        exp--;
+    }
+	ft_printf("Our result is %d", result);
+    return result;
+}
 
 void handle_signals(int signal, siginfo_t *singal_info, void *context)
 {
@@ -33,22 +44,26 @@ void handle_signals(int signal, siginfo_t *singal_info, void *context)
 }
 int get_length(void)
 {
-	int a;
+	int length;
 	int bits;
+	int holder;
 
 	bits = sizeof(int) * 8 - 1;
 	sender.signal = 0;
-	a = 0;
+	length = 0;
+	holder = 0;
 	while (bits)
 	{
 		switch (sender.signal)
 		{
 			case 0:
-				break;
+				kill(sender.pid, SIGUSR1);
+				break ;
 			case 1:
 			{
 				bits--;
-				a |= 1 << bits;
+				holder = ft_power_two((sizeof(int) * 8 - 1) - bits);
+				length += holder;
 				sender.signal = 0;
 				break;
 			}
@@ -62,27 +77,31 @@ int get_length(void)
 				break;
 		}
 	}
-	sender.msg_length = a + 1;
-	return (a);
+	sender.msg_length = length + 1;
+	return (length);
 }
 int get_character(void)
 {
-	int a;
+	int length;
 	int bits;
+	int holder;
 
-	bits = sizeof(char) * 8;
+	bits = sizeof(char) * 8 - 1;
 	sender.signal = 0;
-	a = 0;
+	length = 0;
 	while (bits)
 	{
+		holder = 0;
 		switch (sender.signal)
 		{
 			case 0:
-				break;
+				break ;
+				//kill(sender.pid, SIGUSR1);
 			case 1:
 			{	
 				bits--;
-				a |= 1 << bits;
+				holder = ft_power_two((sizeof(char) * 8 - 1) - bits);
+				length += holder;
 				sender.signal = 0;
 				break;
 			}
@@ -96,8 +115,8 @@ int get_character(void)
 				break;
 		}
 	}
-	sender.msg_length = a + 1;
-	return (a);
+	sender.msg_length = length + 1;
+	return (length);
 }
 int get_string(char **string, int size)
 {
@@ -122,6 +141,7 @@ int main(void)
 
 	sender.pid = 0;
 	sender.signal = 0;
+	sender.msg_length = 0;
 	my_handler.sa_sigaction = &handle_signals;
 	my_handler.sa_flags = SA_SIGINFO;
 	sigemptyset(&(my_handler.sa_mask));
@@ -140,6 +160,7 @@ int main(void)
 			else
 				get_string(&string, (sender.msg_length - 1));
 			sender.pid = 0;
+			sender.msg_length = 0;
 		}
 			
 		sleep(2);
