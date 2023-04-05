@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:19:00 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/28 16:48:58 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/03 10:01:24 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ int	main(int ac, char const **av)
 	if (ac >= 2)
 	{
 		stack_size = make_the_stack(&stack_a[0], av, ac);
+		int i = 0;
+		while (i < ac - 1)
+		{
+			ft_printf("We have %d\n", stack_a[0].nbr);
+			stack_a[0] = *stack_a[0].next;
+			i++;
+		}
 		sort_the_stack(&stack_a[0], stack_size);
 	}
 		
