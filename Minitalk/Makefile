@@ -6,18 +6,18 @@
 #    By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 19:03:31 by mkaratzi          #+#    #+#              #
-#    Updated: 2023/02/21 16:43:37 by mkaratzi         ###   ########.fr        #
+#    Updated: 2023/04/05 08:05:14 by mkaratzi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER_NAME = server
 COMPILE_FLAGS = -Wall -Wextra -Werror
-SERVER_SRC = server.c 
+SERVER_SRC = server.c
 CLIENT_SRC = client.c
 
 CLIENT_NAME = client
 MINITALK_SRC = \
-	ft_printf_main.c  ft_intdigit.c ft_inthex.c ft_intitoa.c \
+	ft_printf_main.c  ft_intdigit.c ft_inthex.c ft_intitoa.c ft_atoi.c\
 	ft_intptr.c ft_intputchar.c ft_intstr.c ft_intstrlen.c \
 	ft_intutoa.c  ft_intudigits.c \
 

@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:06:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/23 15:37:57 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/05 06:14:18 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ int	make_the_stack(t_stack *stack_a, const char **av, int ac)
 			exit(0);
 		}
 		else 
-			{
 				stack_a[k].in_use = 1;
-			}
 	}
 	link_the_stack(&stack_a[0], stack_size);
 	return(stack_size + 1);

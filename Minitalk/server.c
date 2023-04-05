@@ -6,164 +6,98 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:39:19 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/02/21 17:52:06 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/05 08:53:26 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-active_pid_t sender;
+volatile t_current_pid	g_current_pid;
 
-int ft_power_two(int exp) {
-    int result = 1;
-
-    while (exp > 0) {
-        result *= 2;
-        exp--;
-    }
-	ft_printf("Our result is %d", result);
-    return result;
-}
-
-void handle_signals(int signal, siginfo_t *singal_info, void *context)
+int	get_value(int bits)
 {
-	(void)context;
-	if (!sender.pid && signal == SIGUSR1)
-		sender.pid = singal_info->si_pid;
-	switch (signal)
-	{
-		case SIGUSR1:
-			sender.signal = 1;
-			break;
-		case SIGUSR2:
-			sender.signal = 2;
-			break;
-		default:
-			break;
-	}
-}
-int get_length(void)
-{
-	int length;
-	int bits;
-	int holder;
+	int		size;
 
-	bits = sizeof(int) * 8 - 1;
-	sender.signal = 0;
-	length = 0;
-	holder = 0;
+	size = 0;
 	while (bits)
 	{
-		switch (sender.signal)
+		if (g_current_pid.signal == -1)
+			return (-1);
+		else if (!g_current_pid.signal)
+			usleep(100);
+		else
 		{
-			case 0:
-				kill(sender.pid, SIGUSR1);
-				break ;
-			case 1:
-			{
-				bits--;
-				holder = ft_power_two((sizeof(int) * 8 - 1) - bits);
-				length += holder;
-				sender.signal = 0;
-				break;
-			}
-			case 2:
-			{
-				bits--;
-				sender.signal = 0;
-				break;
-			}	
-			default:
-				break;
+			bits--;
+			if (g_current_pid.signal == SIGUSR1)
+				size |= 1 << bits;
+			g_current_pid.signal = kill(g_current_pid.pid, SIGUSR1);
+			if (!bits)
+				return (size);
 		}
 	}
-	sender.msg_length = length + 1;
-	return (length);
+	return (size);
 }
-int get_character(void)
-{
-	int length;
-	int bits;
-	int holder;
 
-	bits = sizeof(char) * 8 - 1;
-	sender.signal = 0;
-	length = 0;
-	while (bits)
-	{
-		holder = 0;
-		switch (sender.signal)
-		{
-			case 0:
-				break ;
-				//kill(sender.pid, SIGUSR1);
-			case 1:
-			{	
-				bits--;
-				holder = ft_power_two((sizeof(char) * 8 - 1) - bits);
-				length += holder;
-				sender.signal = 0;
-				break;
-			}
-			case 2:
-			{
-				bits--;
-				sender.signal = 0;
-				break;
-			}	
-			default:
-				break;
-		}
-	}
-	sender.msg_length = length + 1;
-	return (length);
-}
-int get_string(char **string, int size)
+char	*get_message(int size)
 {
-	int i;
+	char	*str;
+	int		i;
 
-	i  = 0;
+	i = 0;
+	str = malloc(size);
+	if (!str)
+		return (NULL);
 	while (i < size)
-	{
-		string[0][i] = get_character();
-		i++;
-	}
-	ft_printf("we made it here with size = %d\n", size);
-	string[0][size] = '\0';
-	ft_printf("The message received is: \n %s \n", string[0]);
-	free(string[0]);
-	return 0;
+		str[i++] = get_value((sizeof(char) * 8));
+	return (str);
 }
-int main(void)
-{
-	struct sigaction my_handler;
-	char *string;
 
-	sender.pid = 0;
-	sender.signal = 0;
-	sender.msg_length = 0;
-	my_handler.sa_sigaction = &handle_signals;
-	my_handler.sa_flags = SA_SIGINFO;
-	sigemptyset(&(my_handler.sa_mask));
-	sigaction(SIGUSR1, &my_handler, NULL);
-	sigaction(SIGUSR2, &my_handler, NULL);
-	ft_printf("Our server has the pid: %d\n", getpid());
-	while(1)
+void	handler(int sig, siginfo_t *info, void *ucontext)
+{
+	(void)ucontext;
+	if (!g_current_pid.pid)
+		g_current_pid.pid = info->si_pid;
+	g_current_pid.signal = sig;
+}
+
+int	initialize(struct sigaction *action)
+{
+	g_current_pid.pid = 0;
+	g_current_pid.signal = 0;
+	action->sa_sigaction = handler;
+	action->sa_flags = SA_SIGINFO;
+	sigemptyset(&(action->sa_mask));
+	sigaddset(&(action->sa_mask), SIGUSR1);
+	sigaddset(&(action->sa_mask), SIGUSR2);
+	sigaction(SIGUSR1, action, NULL);
+	sigaction(SIGUSR2, action, NULL);
+	return (0);
+}
+
+int	main(void)
+{
+	struct sigaction	action;
+	int					size;
+	char				*str;
+
+	initialize(&action);
+	while (1)
 	{
-		if (sender.pid)
+		ft_printf("Server pid: %i\n", getpid());
+		while (!g_current_pid.signal)
+			usleep(1);
+		g_current_pid.signal = kill(g_current_pid.pid, SIGUSR1);
+		size = get_value((sizeof(int) * 8));
+		str = get_message(size);
+		if (str)
 		{
-			ft_printf("We are receiving a message from pid = %d\n", sender.pid);
-			ft_printf("The message is: %d characters long\n", get_length());
-			string = (char *)malloc((sizeof(char) * sender.msg_length));
-			if (!string)
-				ft_printf("Failed to malloc for the message :c\n");
-			else
-				get_string(&string, (sender.msg_length - 1));
-			sender.pid = 0;
-			sender.msg_length = 0;
+			ft_printf("We got the following message: %s\n", str);
+			free(str);
 		}
-			
-		sleep(2);
+		else
+			return (kill(g_current_pid.pid, SIGUSR2)
+				+ write(2, "Failed to allocate memory!\n", 29));
+		g_current_pid.pid = 0;
 	}
-	return 0;
+	return (0);
 }
