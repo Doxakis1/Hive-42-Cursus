@@ -6,11 +6,12 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:06:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/11 09:54:44 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:37:36 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
+
 
 int	make_the_stack(t_stack *stack_a, const char **av, int ac)
 {
@@ -47,7 +48,6 @@ int	link_the_stack(t_stack *stack_a, int stacksize)
 
 	i  = 0;
 
-	
 	stack_a[0].previous = &stack_a[stacksize];
 	stack_a[stacksize].next = &stack_a[0];
 	while(i < stacksize)

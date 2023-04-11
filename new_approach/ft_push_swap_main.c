@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:37:44 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/13 18:45:32 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:49:13 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,27 @@ int	main(int argc, char const **argv)
 	int				i;
 	char			**a;
 	t_instructions	*solution;
-	t_stack			*stack_a;
+	t_stack			stack_a[1000];
 
 	a = NULL;
-	stack_a = NULL;
+	while (i < 1000)
+	{
+		ft_bzero(&stack_a[i], sizeof(t_stack));
+		i++;
+	}
 	solution = malloc(sizeof(t_instructions));
 	i = 1;
 	if (argc >= 2 && solution)
 	{
 		solution->solution = NULL;
-		while (i < argc )
-			if (!(make_from_one_string(a, argv[i++], &stack_a)))
-				return (ft_error_free(&stack_a, a, 1));
-		i = sort_the_stack(&stack_a);
+		i = make_the_stack(&stack_a[0], argv, argc);
+		i = sort_the_stack(stack_a);
 		if (!i)
 			return (ft_error_free(&stack_a, a, 1));
 		if (i < 7)
-			solution = bruteforce(&stack_a, i, &solution);
+			solution = bruteforce(stack_a, i, &solution);
 		if (i >= 7)
-			solution = smart_solution(&stack_a, i, &solution);
+			solution = (void *)0;
 	}
-	ft_error_free(&stack_a, a, 0);
-	print_solution(&solution->solution, 0);
-	free(solution);
 	return (1);
 }

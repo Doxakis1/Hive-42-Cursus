@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_free.c                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 16:40:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/13 18:45:02 by mkaratzi         ###   ########.fr       */
+/*   Created: 2022/10/25 14:16:08 by mkaratzi          #+#    #+#             */
+/*   Updated: 2023/04/11 08:43:58 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void	free_stack(t_stack **stack);
-
-int	ft_error_free(t_stack **stack_a, char **split, int check)
+void	ft_bzero(void *a, size_t b)
 {
-	int	i;
+	size_t	i;
+	char	*pointer;
 
 	i = 0;
-	free_stack(stack_a);
-	if (split)
+	pointer = (char *)a;
+	while (i < b)
 	{
-		while (split[i])
-			free(&split[i++]);
-		free(&split[i]);
-		free(&split);
+		pointer[i] = 0;
+		i++;
 	}
-	if (check)
-		write(2, "Error\n", 7);
-	return (0);
-}
-
-void	free_stack(t_stack **stack)
-{
-	if ((*stack)->next)
-		free_stack(&(*stack)->next);
-	if ((*stack)->str)
-		free((*stack)->str);
-	free((*stack));
-	return ;
 }

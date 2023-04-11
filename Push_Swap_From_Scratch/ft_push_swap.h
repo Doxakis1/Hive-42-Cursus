@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:13:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/26 12:53:38 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 09:12:34 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 typedef struct s_stack {
 	long			nbr;
+	int				sorted;
+	int				fixed;
 	int				in_use;
 	int				my_biggest_chain;
 	struct s_stack	*next;
@@ -84,6 +86,18 @@ int			ft_atou_to_dest(const char *str, long *dst);
 int			sort_the_stack(t_stack *stack_a, int stack_size);
 int			link_the_stack(t_stack *stack_a, int stacksize);
 int			ft_power(int num, int power);
+
+//bruteforcing
+
+t_instructions	*bruteforce(t_stack **stack_a, int size, t_instructions **sol);
+int	new_incriment(t_instructions **sol, int size);
+int	calculatenext(t_instructions **string, int index, int size);
+int	checks_out(t_stack **stack_a, t_instructions **solution, int size);
+int	math_check(t_instructions **sol, long fixed, long sorted, long stack_size);
+int	calculate_stacksize(char *instructions, int size, int index, int a);
+int	math_check(t_instructions **sol, long fixed, long sorted, long stack_size);
+long	check_move_for_a(int a_st, int b_st,int fixed, int move);
+long	check_move_for_b(int a_st, int b_st,int fixed, int move);
 
 //the moves
 int			reverse_rotate_move(t_stack **stack_given, int identifier);

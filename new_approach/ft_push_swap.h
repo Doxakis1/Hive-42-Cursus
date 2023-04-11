@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:41:54 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/13 18:40:08 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:43:04 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 
 typedef struct s_stack {
 	long			nbr;
+	short			in_use;
 	long			sorted;
 	long			fixed;
 	char			*str;
 	struct s_stack	*next;
+	struct s_stack	*previous;
 }	t_stack;
 
 typedef struct s_instructions {
@@ -31,10 +33,11 @@ typedef struct s_instructions {
 
 //Currently used in Push_Swap
 
-char			**ft_split(char const *s, char c);
-int				add_to_stack(t_stack **head, const char *str);
-t_stack			*create_empty(t_stack **item);
+int				make_the_stack(t_stack *stack_a, const char **av, int ac);
+int				link_the_stack(t_stack *stack_a, int stacksize);
 long			ft_atou(const char *str);
+int				ft_atou_to_dest(const char *str, long *dst);
+
 int				ft_error_free(t_stack **stack_a, char **split, int check);
 void			free_stack(t_stack **stack);
 int				sort_the_stack(t_stack **stack_a);
