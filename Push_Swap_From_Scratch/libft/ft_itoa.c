@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 03:11:51 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/15 07:41:57 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:26:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*ft_itoa(int n)
 	counter = digits(n);
 	number = n;
 	str = malloc(sizeof(char) * counter + 1);
-	if (str == NULL)
-		return (NULL);
+	if (str == (void *)0)
+		return ((void *)0);
 	if (number < 0)
 	{
 		str[0] = '-';

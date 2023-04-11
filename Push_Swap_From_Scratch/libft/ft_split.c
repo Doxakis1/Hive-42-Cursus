@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:05:38 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/08 15:13:02 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:26:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	**ft_split(char const *s, char c)
 	string_len = ft_strlen(s);
 	string_count = count_split_strings(s, c, string_len);
 	final = (char **)malloc(string_count * sizeof(char *) + 1);
-	if (final == NULL)
-		return (NULL);
+	if (final == (void *)0)
+		return ((void *)0);
 	final = final1(final, s, c, string_count);
 	return (final);
 }
@@ -69,19 +69,19 @@ static	char	**final1(char **final, const char *str, char d, size_t counter)
 	{
 		j = find_next_length(buf, str, d);
 		final[loop] = (char *)malloc(j + 1);
-		if (final[loop] == NULL)
+		if (final[loop] == (void *)0)
 		{
 			while (loop > 0)
 				free(final[loop--]);
 			free(final[0]);
 			free(buf);
-			return (NULL);
+			return ((void *)0);
 		}
 		final[loop] = n_str(final[loop], str, buf, j);
 		loop++;
 	}
 	free(buf);
-	final[loop] = NULL;
+	final[loop] = (void *)0;
 	return (final);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:01:32 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/15 07:08:48 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:26:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int			final_length;
 	char		*final;
 
-	if (s1 == NULL || set == NULL)
-		return (NULL);
+	if (s1 == (void *)0 || set == (void *)0)
+		return ((void *)0);
 	i = 0;
 	j = ft_strlen(s1);
 	while (s1[i] != '\0' && ft_strchr(set, (int)s1[i]))
@@ -44,7 +44,7 @@ static	char	*create_final(char const *given, int start, int length)
 	i = 0;
 	final = malloc(length + 1);
 	if (!final)
-		return (NULL);
+		return ((void *)0);
 	while (i < length && length > 0)
 	{
 		final[i] = given[start + i];

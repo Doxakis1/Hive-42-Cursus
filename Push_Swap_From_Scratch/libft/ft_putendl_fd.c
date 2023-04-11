@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 04:42:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/08 11:46:40 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:26:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if (s == NULL)
+	if (s == (void *)0)
 		return ;
 	ft_putstr_fd(s, fd);
 	write(fd, "\n", 1);

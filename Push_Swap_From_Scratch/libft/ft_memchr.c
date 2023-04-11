@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:14:40 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/24 15:05:59 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:26:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		string++;
 		i++;
 	}
-	return (NULL);
+	return ((void *)0);
 }

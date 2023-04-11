@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 04:16:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/08 12:07:32 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:26:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	size_t	i;
 
 	i = 0;
-	if (s == NULL || f == NULL)
+	if (s == (void *)0 || f == (void *)0)
 		return ;
 	string_len = ft_strlen(s);
 	while (i < string_len)

@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:54:42 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/23 19:31:07 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:26:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_intutoa(unsigned int a, int count)
 	counter = ft_intudigits(a);
 	number = a;
 	str = malloc(sizeof(char) * counter + 1);
-	if (str == NULL)
+	if (str == (void *)0)
 		return (count);
 	if (number <= 0)
 		str[0] = '0';

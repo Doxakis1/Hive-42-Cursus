@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:25:38 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/05 09:06:26 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/05 09:11:48 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,14 @@ int	main(int argc, char **argv)
 	g_current_pid.msg_length = ft_strlen(argv[2]) + 1;
 	if (g_current_pid.msg_length == 1)
 		return (ft_printf("Invalid string\n"));
-	kill(g_current_pid.pid, SIGUSR1);
+	g_current_pid.signal = kill(g_current_pid.pid, SIGUSR1);
 	while (!g_current_pid.signal)
 		usleep(100);
+	if (g_current_pid.signal == -1)
+		exit(ft_printf("Message could not be delivered!\n"));
 	ft_printf("Server is ready to receive us\n");
 	send_value(g_current_pid.pid, g_current_pid.msg_length, sizeof(int) * 8);
 	send_string(g_current_pid.pid, argv[2]);
-	ft_printf("Send OK!\n");
+	ft_printf("Sent successfully!\n");
 	return (0);
 }
