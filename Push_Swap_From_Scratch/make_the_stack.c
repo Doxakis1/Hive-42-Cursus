@@ -6,51 +6,47 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:06:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/11 09:54:44 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:58:11 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int	make_the_stack(t_stack *stack_a, const char **av, int ac)
+int	make_the_stack(t_stack *stack_a, const char **av, int ac, int j)
 {
-	int i = 0;
-	int j = 1;
-	int k = 0;
-	int stack_size;
-	
-	while(j < ac)
+	int	i;
+	int	k;
+	int	stack_size;
+
+	k = 0;
+	while (j < ac)
 	{
 		i = 0;
-		while(av[j][i] != '\0')
-			i = i + ft_atou_to_dest(av[j], &(stack_a[k++].nbr));
+		stack_a[k].fixed = j;
+		while (av[j][i] != '\0')
+			i = i + ft_atou_to_dest(av[j], &(stack_a[k++].nbr), 1, 0);
 		j++;
 	}
 	stack_size = k - 1;
 	while (--k >= 0)
 	{
 		if (stack_a[k].nbr == 2147483648)
-		{
-			write(2, "Error\n", 6);
-			exit(0);
-		}
-		else 
-				stack_a[k].in_use = 1;
+			return (0);
+		else
+			stack_a[k].in_use = 1;
 	}
 	link_the_stack(&stack_a[0], stack_size);
-	return(stack_size + 1);
+	return (stack_size + 1);
 }
 
 int	link_the_stack(t_stack *stack_a, int stacksize)
 {
-	int i;
+	int	i;
 
-	i  = 0;
-
-	
+	i = 0;
 	stack_a[0].previous = &stack_a[stacksize];
 	stack_a[stacksize].next = &stack_a[0];
-	while(i < stacksize)
+	while (i < stacksize)
 	{
 		stack_a[i].next = &stack_a[i + 1];
 		i++;

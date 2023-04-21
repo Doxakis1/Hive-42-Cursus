@@ -6,13 +6,13 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:53:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/01/13 18:42:27 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:44:20 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-t_instructions	*bruteforce(t_stack **stack_a, int size, t_instructions **sol)
+t_instructions	*bruteforce(t_stack *stack_a, int size, t_instructions **sol)
 {
 	int	k;
 	int	j;
@@ -25,13 +25,11 @@ t_instructions	*bruteforce(t_stack **stack_a, int size, t_instructions **sol)
 	(*sol)->solution[k] = '\0';
 	while (j < k)
 		(*sol)->solution[j++] = '0';
-	if ((checks_out(&(*stack_a), &(*sol), size)))
+	if ((checks_out(&stack_a, &(*sol), size)))
 		return ((*sol));
 	while (new_incriment(&(*sol), size))
-	{
-		if (checks_out(&(*stack_a), &(*sol), size))
+		if (checks_out(&stack_a, &(*sol), size))
 			return ((*sol));
-	}
 	free(&(*sol)->solution);
 	(*sol)->solution = NULL;
 	return ((*sol));

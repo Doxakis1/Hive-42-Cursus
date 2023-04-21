@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 23:16:57 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/11/23 08:41:53 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:32:43 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	join(char **dest, char *src, char *src2, int check)
 			final[c] = src2[c - a];
 		final[a + b] = '\0';
 	}
-	if (dest[0] != NULL)
+	if (dest[0] != NULL) 
 		free(dest[0]);
 	dest[0] = final;
 	return (a + b);

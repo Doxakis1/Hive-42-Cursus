@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:59:44 by mkaratzi          #+#    #+#             */
-/*   Updated: 2022/12/15 04:15:03 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:00:09 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,13 @@ int	calculatenext(t_instructions **string, int index, int size)
 int	checks_out(t_stack **stack_a, t_instructions **solution, int size)
 {
 	t_stack	*current;
+	int		i;
 
 	current = *stack_a;
-	while (current != NULL)
+	i = 0;
+	while (i++ < size)
 	{	
-		if (!math_check(&(*solution), current->fixed, current->sorted, size))
+		if (!math_check(&(*solution), current->fixed, current->nbr, size))
 			return (0);
 		current = current->next;
 	}
