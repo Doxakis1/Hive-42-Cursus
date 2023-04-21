@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:19:00 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/21 14:41:13 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:13:08 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char const **av)
 	stack_size = 0;
 	solution = malloc(sizeof(t_instructions));
 	if (!solution || ac < 2)
-		return (write(2, "Error\n", 6));
+		return (1);
 	while (stack_size < MAX_STACK_SIZE)
 		ft_bzero(&stack_a[stack_size++], sizeof(t_stack));
 	stack_size = 0;

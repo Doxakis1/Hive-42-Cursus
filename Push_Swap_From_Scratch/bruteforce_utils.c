@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:59:44 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/21 14:00:09 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:51:36 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	new_incriment(t_instructions **sol, int size)
 	while ((*sol)->solution[i] != '\0')
 	{
 		fornow = calculatenext(&(*sol), i, size);
-		if ((*sol)->solution[i] < '8' && fornow)
+		if ((*sol)->solution[i] < '4' && fornow)
 		{
 			(*sol)->solution[i] = fornow;
 			return (1);

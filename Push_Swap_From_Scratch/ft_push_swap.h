@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:13:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/21 13:57:32 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:47:44 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_stack {
 	int				sorted;
 	long			fixed;
 	int				in_use;
-	int				my_biggest_chain;
 	struct s_stack	*next;
 	struct s_stack	*previous;
 }	t_stack;
