@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 07:29:24 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/21 17:08:40 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:39:14 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ int	get_highest_bit(int stack_size)
 	return (max_bits);
 }
 
+int	check_sorted(t_stack *stack_a)
+{
+	t_stack	*current;
+	int		check;
+
+	current = stack_a;
+	check = current->nbr;
+	while (current->next->nbr != check)
+	{
+		if (current->nbr >= current->next->nbr)
+			return (EXIT_FAILURE);
+		current = current->next;
+	}
+	return (EXIT_SUCCESS);
+}
+
 void	big_sort(t_stack *stack_a, int stack_size, int i, int j)
 {
 	t_stack	*stack_b;
@@ -32,7 +48,7 @@ void	big_sort(t_stack *stack_a, int stack_size, int i, int j)
 	dummy = NULL;
 	stack_b = NULL;
 	max_bits = get_highest_bit(stack_size);
-	while (++i <= max_bits)
+	while (++i <= max_bits && check_sorted(stack_a))
 	{
 		j = 0;
 		b_stack_size = 0;

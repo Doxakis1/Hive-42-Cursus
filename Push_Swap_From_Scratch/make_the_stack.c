@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:06:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/21 13:58:11 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:48:53 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	make_the_stack(t_stack *stack_a, const char **av, int ac, int j)
 	stack_size = k - 1;
 	while (--k >= 0)
 	{
-		if (stack_a[k].nbr == 2147483648)
+		if (stack_a[k].nbr > 2147483647 || stack_a[k].nbr < -2147483648)
 			return (0);
 		else
 			stack_a[k].in_use = 1;

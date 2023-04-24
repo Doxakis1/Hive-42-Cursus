@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:13:53 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/21 14:47:44 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:38:42 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ int				check_more_rotates(t_stack **stack_given, int bitshift,
 					int check, int stack_size);
 void			big_sort(t_stack *stack_a, int stack_size, int i, int j);
 int				get_highest_bit(int stack_size);
+int				check_sorted(t_stack *stack_a);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:44:27 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/21 13:59:50 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:50:45 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ int	ft_atou_to_dest(const char *str, long *dst, int sign, int i)
 	while (str[i] != '\0')
 	{
 		if (str[i] >= '0' && str[i] <= '9'
-			&& *(dst) <= 2147483647 && *(dst) >= -2147483648)
+			&& *(dst) <= 2147483648)
 			*(dst) = *(dst) * 10 + str[i] - '0';
 		else if (str[i] == ' ')
 			return (i + 1);
 		else if ((!ft_isdigit(str[i]) && str[i] != ' ')
-			|| (*(dst) >= 2147483647 || *(dst) <= -2147483648))
+			|| (*(dst) >= 2147483648 && str[i + 1] != ' '))
 		{
 			*(dst) = 2147483648;
 			return (ft_strlen(str));
