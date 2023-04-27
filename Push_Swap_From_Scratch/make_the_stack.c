@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:06:41 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/24 19:48:53 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:52:26 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ int	make_the_stack(t_stack *stack_a, const char **av, int ac, int j)
 	while (j < ac)
 	{
 		i = 0;
-		stack_a[k].fixed = j;
 		while (av[j][i] != '\0')
-			i = i + ft_atou_to_dest(av[j], &(stack_a[k++].nbr), 1, 0);
+			i = i + ft_atou_to_dest(&av[j][i], &(stack_a[k++].nbr), 1, 0);
 		j++;
 	}
 	stack_size = k - 1;
@@ -32,8 +31,8 @@ int	make_the_stack(t_stack *stack_a, const char **av, int ac, int j)
 	{
 		if (stack_a[k].nbr > 2147483647 || stack_a[k].nbr < -2147483648)
 			return (0);
-		else
-			stack_a[k].in_use = 1;
+		stack_a[k].in_use = 1;
+		stack_a[k].fixed = k + 1;
 	}
 	link_the_stack(&stack_a[0], stack_size);
 	return (stack_size + 1);
