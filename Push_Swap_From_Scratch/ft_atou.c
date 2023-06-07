@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:44:27 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/04/27 14:15:45 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:53:45 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ long	ft_atou(const char *str)
 	return (sign * final);
 }
 
+static int	check_zero(int i, long *dst)
+{
+	if (*(dst) == 0 && i == 1)
+	{
+		*(dst) = 2147483648;
+	}
+	return (i);
+}
+
 int	ft_atou_to_dest(const char *str, long *dst, int sign, int i)
 {
 	*(dst) = 0;
@@ -51,8 +60,8 @@ int	ft_atou_to_dest(const char *str, long *dst, int sign, int i)
 		if (str[i] >= '0' && str[i] <= '9'
 			&& *(dst) <= 2147483648)
 			*(dst) = *(dst) * 10 + str[i] - '0';
-		else if (str[i] == ' ')
-			return (i + 1);
+		else if (str[i] == ' ' && i++)
+			break ;
 		else if ((!ft_isdigit(str[i]) && str[i] != ' ')
 			|| (*(dst) >= 2147483648 && str[i + 1] != ' '))
 		{
@@ -62,5 +71,5 @@ int	ft_atou_to_dest(const char *str, long *dst, int sign, int i)
 		i++;
 	}
 	*(dst) *= sign;
-	return (i);
+	return (check_zero(i, dst));
 }
