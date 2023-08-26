@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 01:45:32 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/25 01:12:14 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/08/26 03:44:44 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ pthread_t	*initialize_philo_threads(const int philo_count)
 	philo_thread = (pthread_t *)malloc(sizeof(pthread_t) * philo_count);
 	if (!philo_thread)
 		return (philo_thread);
-	while(loop_counter < philo_count)
+	while (loop_counter < philo_count)
 	{
 		philo_thread[loop_counter] = 0;
 		loop_counter++;
