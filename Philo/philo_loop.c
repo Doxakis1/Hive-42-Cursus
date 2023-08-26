@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 04:22:43 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 05:14:36 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/08/26 05:42:12 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ static void	print_my_state(int state, t_philo *my_data)
 	my_data->alive = NOT_ALIVE;
 }
 
+static void	check_times_eaten(t_philo *my_data)
+{
+	if (my_data->parameters.times_to_eat == 0)
+	{
+		*my_data->times_eaten_done--;
+		my_data->alive = NOT_ALIVE;
+	}
+}
+
 void	philo_loop(void *data)
 {
 	t_philo		*my_data;
@@ -38,6 +47,7 @@ void	philo_loop(void *data)
 		pthread_mutex_lock(&my_data->right_fork->fork_lock);
 		print_my_state(TOOK_FORK, my_data);
 		print_my_state(EATING, my_data);
+		my_data->parameters.times_to_eat--;
 		my_data->parameters.time_last_ate = get_time();
 		usleep(my_data->parameters.time_to_eat * 1000);
 		pthread_mutex_unlock(&my_data->left_fork->fork_lock);

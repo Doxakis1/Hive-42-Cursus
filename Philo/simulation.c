@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 04:23:49 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 05:16:35 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/08/26 05:36:53 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ static void	await_the_philos(t_monitor *monitor, t_philo *philos)
 	pthread_mutex_lock(&monitor->printer.printer_lock);
 	loop = monitor->printer.alive;
 	pthread_mutex_unlock(&monitor->printer.printer_lock);
-	while (loop == ALIVE)
+	while (loop == ALIVE && monitor->times_eaten_done)
 	{
-		check_alive(monitor, &philos[philo]);
+		if (philos[philo].parameters.times_to_eat != 0)
+			check_alive(monitor, &philos[philo]);
 		pthread_mutex_lock(&monitor->printer.printer_lock);
 		loop = monitor->printer.alive;
 		pthread_mutex_unlock(&monitor->printer.printer_lock);

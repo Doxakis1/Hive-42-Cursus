@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:53:04 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 04:50:26 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/08/26 05:38:49 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ typedef struct s_philo{
 	t_fork			*left_fork;
 	t_fork			*right_fork;
 	t_printer		*printer;
+	_Atomic int		*times_eaten_done;
 	int				id;
 	short			alive;
 }t_philo;
 
 typedef struct s_monitor{
 	int				philo_counter;
+	_Atomic int		times_eaten_done;
 	pthread_t		*philo_threads;
 	t_fork			*forks;
 	t_printer		printer;
