@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 02:26:47 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 05:39:43 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/08/26 05:44:43 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	initialize_loop(t_philo *philo, int id, t_monitor *monitor,
 
 	philo_count = monitor->philo_counter;
 	philo->parameters = *myparameters;
-	philo->times_eaten_done = monitor->times_eaten_done;
+	philo->times_eaten_done = &monitor->times_eaten_done;
 	philo->left_fork = &monitor->forks[find_my_left_fork(id)];
 	philo->right_fork = &monitor->forks[find_my_right_fork(id, philo_count)];
 	philo->id = id + 1;

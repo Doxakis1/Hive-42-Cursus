@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 04:22:43 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 05:42:12 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/08/26 05:48:23 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	check_times_eaten(t_philo *my_data)
 {
 	if (my_data->parameters.times_to_eat == 0)
 	{
-		*my_data->times_eaten_done--;
+		*(my_data->times_eaten_done) -= 1;
 		my_data->alive = NOT_ALIVE;
 	}
 }
@@ -55,6 +55,7 @@ void	philo_loop(void *data)
 		print_my_state(SLEEPING, my_data);
 		usleep(my_data->parameters.time_to_sleep * 1000);
 		print_my_state(THINKING, my_data);
+		check_times_eaten(my_data);
 	}
 	return ;
 }
