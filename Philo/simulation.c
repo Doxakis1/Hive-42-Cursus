@@ -21,7 +21,7 @@ static int	check_dead(t_philo *philo, int philo_count)
 	{
 		pthread_mutex_lock(&philo[loop].death_lock);
 		if (get_time() - philo->parameters.time_last_ate
-		> (long long)philo->parameters.time_to_die)
+		> (long long)philo->parameters.time_to_die && !philo[loop].alive)
 		{
 			pthread_mutex_lock(&philo->printer->printer_lock);
 			philo->printer->alive = NOT_ALIVE;
@@ -42,7 +42,7 @@ static int check_meal_times(t_monitor *monitor, t_philo *philos)
 	int loop;
 
 	loop = 0;
-	if (monitor->times_eaten_done < 0)
+	if (monitor->times_eaten_done <= 0)
 		return (1);
 	ret = monitor->times_eaten_done;
 	while (loop < monitor->philo_counter)

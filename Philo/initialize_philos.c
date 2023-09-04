@@ -20,7 +20,7 @@ static void	initialize_parameters(long *inputarray, t_parameters *parameters)
 	parameters->time_to_die = (int)inputarray[i++];
 	parameters->time_to_eat = (int)inputarray[i++];
 	parameters->time_to_sleep = (int)inputarray[i++];
-	parameters->times_eaten = 0;
+	parameters->times_eaten = (int)inputarray[i++];
 	parameters->time_last_ate = 0;
 }
 

@@ -36,6 +36,9 @@ static void	philo_eat(t_philo *my_data)
 	my_data->parameters.time_last_ate = get_time();
 	pthread_mutex_unlock(&my_data->death_lock);
 	sleep_mod(my_data, my_data->parameters.time_to_eat);
+	pthread_mutex_lock(&my_data->death_lock);
+	my_data->parameters.times_eaten--;
+	pthread_mutex_unlock(&my_data->death_lock);
 	pthread_mutex_unlock(&my_data->right_fork->fork_lock);
 	pthread_mutex_unlock(&my_data->left_fork->fork_lock);
 }
@@ -60,7 +63,7 @@ void	philo_loop(void *data)
 	pthread_mutex_unlock(&my_data->printer->printer_lock);
 	my_data->parameters.time_last_ate = get_time();
 	if (my_data->id % 2 == 0)
-		usleep(500);
+		usleep(1000);
 	while (1)
 	{
 		if (check_death(my_data))
