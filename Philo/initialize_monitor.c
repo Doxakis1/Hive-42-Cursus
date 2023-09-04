@@ -12,15 +12,13 @@
 
 #include "philo.h"
 
-int	initialize_monitor(t_monitor *monitor, long philo_count)
+int	initialize_monitor(t_monitor *monitor, long philo_count, int times_to_eat)
 {
-	int				counter;
 
-	counter = 0;
 	if (initialize_print_states(monitor->printer.print_states))
 		return (1);
 	monitor->philo_counter = (int)philo_count;
-	monitor->times_eaten_done = monitor->philo_counter;
+	monitor->times_eaten_done = monitor->philo_counter * times_to_eat;
 	monitor->printer.alive = ALIVE;
 	monitor->philo_threads = initialize_philo_threads(monitor->philo_counter);
 	monitor->forks = initialize_forks(monitor->philo_counter);

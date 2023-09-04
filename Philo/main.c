@@ -33,7 +33,7 @@ int	main(int argc, char const *argv[])
 		return (print_args_error());
 	if (inputarray[0] == 1)
 		return (print_loner_error());
-	if (initialize_monitor(&monitor, inputarray[0]))
+	if (initialize_monitor(&monitor, inputarray[0], inputarray[4]))
 		return (print_monitor_error());
 	if (initialize_philos(inputarray, &monitor, &philos))
 		return (print_philo_creation_error()

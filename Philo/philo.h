@@ -31,7 +31,7 @@ typedef struct s_parameters{
 	int			time_to_die;
 	int			time_to_eat;
 	int			time_to_sleep;
-	int			times_to_eat;
+	int			times_eaten;
 	long long	time_last_ate;
 }t_parameters;
 
@@ -53,14 +53,15 @@ typedef struct s_philo{
 	t_fork			*left_fork;
 	t_fork			*right_fork;
 	t_printer		*printer;
-	_Atomic int		*times_eaten_done;
+	pthread_mutex_t death_lock;
+	pthread_mutex_t eaten_lock;
 	int				id;
 	short			alive;
 }t_philo;
 
 typedef struct s_monitor{
 	int				philo_counter;
-	_Atomic int		times_eaten_done;
+	int				times_eaten_done;
 	pthread_t		*philo_threads;
 	t_fork			*forks;
 	t_printer		printer;
@@ -83,7 +84,7 @@ int				check_invalid_arguments(int argc, char const *argv[],
 long long		get_time(void);
 
 // initialize_monitor.c
-int				initialize_monitor(t_monitor *monitor, long philo_count);
+int				initialize_monitor(t_monitor *monitor, long philo_count, int times_to_eat);
 
 // initialize_print_states.c  
 int				initialize_print_states(char print_states[5][50]);
@@ -108,5 +109,9 @@ void			start_simulation(t_monitor *monitor, t_philo *philos);
 
 // philo_loop.c
 void			philo_loop(void *data);
+
+//philo_loop_helpers.c
+int				check_death(t_philo *my_data);
+void			sleep_mod(t_philo *my_data, long long time_to_sleep);
 
 #endif

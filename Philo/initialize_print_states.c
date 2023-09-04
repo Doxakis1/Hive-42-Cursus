@@ -31,10 +31,10 @@ static size_t	my_strlcpy(char *dst, const char *src, size_t size)
 
 int	initialize_print_states(char print_states[5][50])
 {
-	my_strlcpy(print_states[0], "%lld %d has taken a fork\n", 26);
-	my_strlcpy(print_states[1], "%lld %d is eating\n", 19);
-	my_strlcpy(print_states[2], "%lld %d is sleeping\n", 21);
-	my_strlcpy(print_states[3], "%lld %d is thinking\n", 21);
-	my_strlcpy(print_states[4], "%lld %d died\n", 14);
+	my_strlcpy(print_states[0], "%zu %d has taken a fork\n", 25);
+	my_strlcpy(print_states[1], "%zu %d is eating\n", 18);
+	my_strlcpy(print_states[2], "%zu %d is sleeping\n", 20);
+	my_strlcpy(print_states[3], "%zu %d is thinking\n", 20);
+	my_strlcpy(print_states[4], "%zu %d died\n", 13);
 	return (0);
 }

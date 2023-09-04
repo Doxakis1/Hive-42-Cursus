@@ -20,7 +20,7 @@ static void	initialize_parameters(long *inputarray, t_parameters *parameters)
 	parameters->time_to_die = (int)inputarray[i++];
 	parameters->time_to_eat = (int)inputarray[i++];
 	parameters->time_to_sleep = (int)inputarray[i++];
-	parameters->times_to_eat = (int)inputarray[i++];
+	parameters->times_eaten = 0;
 	parameters->time_last_ate = 0;
 }
 
@@ -40,14 +40,17 @@ static int	initialize_loop(t_philo *philo, int id, t_monitor *monitor,
 	t_parameters *myparameters)
 {
 	int		philo_count;
+	
 
 	philo_count = monitor->philo_counter;
 	philo->parameters = *myparameters;
-	philo->times_eaten_done = &monitor->times_eaten_done;
 	philo->left_fork = &monitor->forks[find_my_left_fork(id)];
 	philo->right_fork = &monitor->forks[find_my_right_fork(id, philo_count)];
 	philo->id = id + 1;
+	philo_count = pthread_mutex_init(&philo->death_lock, NULL);
 	philo->alive = ALIVE;
+	pthread_mutex_init(&philo->eaten_lock, NULL);
+	pthread_mutex_init(&philo->death_lock, NULL);
 	philo->printer = &monitor->printer;
 	return (0);
 }
