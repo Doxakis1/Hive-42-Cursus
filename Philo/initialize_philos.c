@@ -24,16 +24,29 @@ static void	initialize_parameters(long *inputarray, t_parameters *parameters)
 	parameters->time_last_ate = 0;
 }
 
-static int	find_my_left_fork(int id)
-{
-	return (id);
-}
-
-static int	find_my_right_fork(int id, int philo_count)
+static int	find_my_fork_two(int id,  int philo_count)
 {
 	if (id == philo_count - 1)
+		return (id);
+	if (id == 0)
+		return (philo_count - 1);
+	if (id % 2)
+		return (id);
+	return (id - 1);
+}
+
+static int	find_my_fork_one(int id, int philo_count)
+{
+	
+	if (id == 0)
 		return (0);
-	return (id + 1);
+	if (id == philo_count - 1)
+		return (id - 1);
+	if (id == 0)
+		return (0);
+	if (id % 2)
+		return (id - 1);
+	return (id);
 }
 
 static int	initialize_loop(t_philo *philo, int id, t_monitor *monitor,
@@ -44,8 +57,8 @@ static int	initialize_loop(t_philo *philo, int id, t_monitor *monitor,
 
 	philo_count = monitor->philo_counter;
 	philo->parameters = *myparameters;
-	philo->left_fork = &monitor->forks[find_my_left_fork(id)];
-	philo->right_fork = &monitor->forks[find_my_right_fork(id, philo_count)];
+	philo->fork_two = &monitor->forks[find_my_fork_two(id, philo_count)];
+	philo->fork_one = &monitor->forks[find_my_fork_one(id, philo_count)];
 	philo->id = id + 1;
 	philo_count = pthread_mutex_init(&philo->death_lock, NULL);
 	philo->alive = ALIVE;

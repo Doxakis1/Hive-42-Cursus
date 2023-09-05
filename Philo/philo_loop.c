@@ -27,9 +27,9 @@ static void	print_my_state(int state, t_philo *my_data)
 }
 static void	philo_eat(t_philo *my_data)
 {
-	pthread_mutex_lock(&my_data->right_fork->fork_lock);
+	pthread_mutex_lock(&my_data->fork_one->fork_lock);
 	print_my_state(TOOK_FORK, my_data);
-	pthread_mutex_lock(&my_data->left_fork->fork_lock);
+	pthread_mutex_lock(&my_data->fork_two->fork_lock);
 	print_my_state(TOOK_FORK, my_data);
 	print_my_state(EATING, my_data);
 	pthread_mutex_lock(&my_data->death_lock);
@@ -39,8 +39,8 @@ static void	philo_eat(t_philo *my_data)
 	pthread_mutex_lock(&my_data->death_lock);
 	my_data->parameters.times_eaten--;
 	pthread_mutex_unlock(&my_data->death_lock);
-	pthread_mutex_unlock(&my_data->right_fork->fork_lock);
-	pthread_mutex_unlock(&my_data->left_fork->fork_lock);
+	pthread_mutex_unlock(&my_data->fork_one->fork_lock);
+	pthread_mutex_unlock(&my_data->fork_two->fork_lock);
 }
 
 static void	philo_sleep(t_philo *my_data)

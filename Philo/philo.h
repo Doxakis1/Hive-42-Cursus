@@ -50,8 +50,8 @@ typedef struct s_printer{
 
 typedef struct s_philo{
 	t_parameters	parameters;
-	t_fork			*left_fork;
-	t_fork			*right_fork;
+	t_fork			*fork_two;
+	t_fork			*fork_one;
 	t_printer		*printer;
 	pthread_mutex_t death_lock;
 	pthread_mutex_t eaten_lock;
