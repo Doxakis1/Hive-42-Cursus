@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = philo
-COMPILE_FLAGS = -Wall -Wextra -Werror
+COMPILE_FLAGS = -Wall -Wextra -Werror -Wpedantic
 SRC = \
 	ft_atou_to_dest.c print_errors.c check_invalid_arguments.c get_time.c \
 	initialize_monitor.c initialize_print_states.c initialize_philo_threads.c\
