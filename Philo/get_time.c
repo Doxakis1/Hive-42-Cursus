@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 23:52:21 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 17:33:35 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:19:41 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ long	get_time(void)
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
-	time = (long)(current_time.tv_sec) * 1000
-		+ (long)(current_time.tv_usec / 1000);
+	time = (current_time.tv_sec) * 1000
+		+ (current_time.tv_usec / 1000);
 	return (time);
 }

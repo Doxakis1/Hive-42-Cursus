@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:53:04 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 17:39:59 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:18:34 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_parameters{
 	int			time_to_eat;
 	int			time_to_sleep;
 	int			times_eaten;
-	long	time_last_ate;
+	long		time_last_ate;
 }t_parameters;
 
 typedef struct s_fork{
@@ -41,8 +41,8 @@ typedef struct s_fork{
 
 typedef struct s_printer{
 	pthread_mutex_t	printer_lock;
-	long		start_time;
-	long		current_time;
+	long			start_time;
+	long			current_time;
 	short			alive;
 	char			print_states[5][50];
 }t_printer;
@@ -80,7 +80,7 @@ int				check_invalid_arguments(int argc, char const *argv[],
 					long *inputarray);
 
 // get_time.c
-long		get_time(void);
+long			get_time(void);
 
 // initialize_monitor.c
 int				initialize_monitor(t_monitor *monitor, long philo_count,
