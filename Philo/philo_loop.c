@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 04:22:43 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 19:02:37 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:43:26 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static void	print_my_state(int state, t_philo *my_data)
 		return ;
 	}
 	pthread_mutex_unlock(&my_data->printer->printer_lock);
+	pthread_mutex_lock(&my_data->death_lock);
 	my_data->alive = NOT_ALIVE;
+	pthread_mutex_unlock(&my_data->death_lock);
 }
 
 static void	philo_eat(t_philo *my_data)
@@ -62,7 +64,9 @@ void	*philo_loop(void *data)
 	my_data = (t_philo *)data;
 	pthread_mutex_lock(&my_data->printer->printer_lock);
 	pthread_mutex_unlock(&my_data->printer->printer_lock);
+	pthread_mutex_lock(&my_data->death_lock);
 	my_data->parameters.time_last_ate = get_time();
+	pthread_mutex_unlock(&my_data->death_lock);
 	if (my_data->id % 2 == 0)
 		usleep(1000);
 	while (1)
