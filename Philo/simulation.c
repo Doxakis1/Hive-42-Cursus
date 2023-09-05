@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 04:23:49 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 18:34:27 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:49:01 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ static int	check_meal_times(t_monitor *monitor, t_philo *philos)
 		if (philos[loop].parameters.times_eaten <= 0)
 		{
 			ret--;
+			pthread_mutex_lock(&philos[loop].death_lock);
+			philos[philo].alive = NOT_ALIVE;
+			pthread_mutex_unlock(&philos[loop].death_lock);
 		}
 		pthread_mutex_unlock(&philos[loop].eaten_lock);
 		loop++;
