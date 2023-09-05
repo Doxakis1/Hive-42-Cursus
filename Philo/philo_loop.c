@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 04:22:43 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 18:58:34 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:02:37 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,18 @@ void	*philo_loop(void *data)
 	t_philo		*my_data;
 
 	my_data = (t_philo *)data;
-	philo_think(my_data);
+	pthread_mutex_lock(&my_data->printer->printer_lock);
+	pthread_mutex_unlock(&my_data->printer->printer_lock);
 	my_data->parameters.time_last_ate = get_time();
 	if (my_data->id % 2 == 0)
 		usleep(1000);
 	while (1)
 	{
+		philo_think(my_data);
 		if (check_death(my_data))
 			return (NULL);
 		philo_eat(my_data);
 		philo_sleep(my_data);
-		philo_think(my_data);
 	}
 	return (NULL);
 }
