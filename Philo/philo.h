@@ -37,7 +37,6 @@ typedef struct s_parameters{
 
 typedef struct s_fork{
 	pthread_mutex_t	fork_lock;
-	int				fork_ownership;
 }t_fork;
 
 typedef struct s_printer{
@@ -108,7 +107,7 @@ int				initialize_philos(long array[5], t_monitor *monitor,
 void			start_simulation(t_monitor *monitor, t_philo *philos);
 
 // philo_loop.c
-void			*philo_loop(void *data);
+void			philo_loop(void *data);
 
 //philo_loop_helpers.c
 int				check_death(t_philo *my_data);

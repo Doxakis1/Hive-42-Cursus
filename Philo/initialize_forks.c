@@ -39,7 +39,6 @@ t_fork	*initialize_forks(const int fork_count)
 			destroy_forks(forks, loop_counter);
 			return (NULL);
 		}
-		forks[loop_counter].fork_ownership = 0;
 		loop_counter++;
 	}
 	return (forks);

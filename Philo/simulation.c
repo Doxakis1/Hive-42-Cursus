@@ -48,9 +48,12 @@ static int check_meal_times(t_monitor *monitor, t_philo *philos)
 	while (loop < monitor->philo_counter)
 	{
 		pthread_mutex_lock(&philos[loop].eaten_lock);
-		if (philos->parameters.times_eaten <= 0)
+		if (philos[loop].parameters.times_eaten <= 0)
 		{
 			ret--;
+			pthread_mutex_lock(&philos[loop].death_lock);
+			philos[loop].alive = NOT_ALIVE;
+			pthread_mutex_unlock(&philos[loop].death_lock);
 		}
 		pthread_mutex_unlock(&philos[loop].eaten_lock);
 		loop++;
@@ -73,13 +76,6 @@ static void	await_the_philos(t_monitor *monitor, t_philo *philos)
 	philo = -1;
 	while (++philo < monitor->philo_counter)
 	{
-		pthread_mutex_lock(&philos[philo].death_lock);
-		philos[philo].alive = NOT_ALIVE;
-		pthread_mutex_unlock(&philos[philo].death_lock);
-	}
-	philo = -1;
-	while (++philo < monitor->philo_counter)
-	{
 		if (monitor->philo_threads[philo])
 			pthread_join(monitor->philo_threads[philo], NULL);
 	}
@@ -94,7 +90,7 @@ void	start_simulation(t_monitor *monitor, t_philo *philos)
 	while (++loop_counter < monitor->philo_counter)
 	{
 		if (pthread_create(&monitor->philo_threads[loop_counter], NULL,
-				philo_loop, (void *)(&philos[loop_counter])))
+				(void *)philo_loop, (void *)(&philos[loop_counter])))
 				monitor->printer.alive = NOT_ALIVE;
 		usleep(100);
 	}

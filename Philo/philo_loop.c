@@ -54,7 +54,7 @@ static void	philo_think(t_philo *my_data)
 	print_my_state(THINKING, my_data);
 }
 
-void	*philo_loop(void *data)
+void	philo_loop(void *data)
 {
 	t_philo		*my_data;
 
@@ -67,10 +67,10 @@ void	*philo_loop(void *data)
 	while (1)
 	{
 		if (check_death(my_data))
-			return NULL;
+			return ;
 		philo_eat(my_data);
 		philo_sleep(my_data);
 		philo_think(my_data);
 	}
-	return NULL;
+	return ;
 }
