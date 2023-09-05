@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:17:17 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 22:03:59 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 22:26:32 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(int argc, char const *argv[])
 	t_monitor		monitor;
 	t_philo			*philos;
 
-	(void)philos;
 	if (check_invalid_arguments(argc, argv, &inputarray[0]))
 		return (print_args_error());
 	if (inputarray[0] == 1)
