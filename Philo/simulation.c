@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 04:23:49 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 17:05:27 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:07:30 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static int	check_dead(t_philo *philo, int philo_count)
 	while (++loop < philo_count)
 	{
 		pthread_mutex_lock(&philo[loop].death_lock);
-		if (get_time() - philo->parameters.time_last_ate
-			> (long long)philo->parameters.time_to_die && !philo[loop].alive)
+		if (get_time() - philo[loop].parameters.time_last_ate
+			> (long)philo->parameters.time_to_die && !philo[loop].alive)
 		{
 			pthread_mutex_lock(&philo->printer->printer_lock);
 			philo->printer->alive = NOT_ALIVE;
 			printf(philo->printer->print_states[DIED], get_time()
-				- philo->printer->time_since_start, philo->id);
+				- philo->printer->start_time, philo[loop].id);
 			pthread_mutex_unlock(&philo->printer->printer_lock);
 			pthread_mutex_unlock(&philo[loop].death_lock);
 			return (1);
@@ -65,7 +65,7 @@ static void	await_the_philos(t_monitor *monitor, t_philo *philos)
 {
 	static int			philo = 0;	
 
-	monitor->printer.time_since_start = get_time();
+	monitor->printer.start_time = get_time();
 	pthread_mutex_unlock(&monitor->printer.printer_lock);
 	usleep(5000);
 	while (1)
@@ -91,7 +91,7 @@ void	start_simulation(t_monitor *monitor, t_philo *philos)
 	while (++loop_counter < monitor->philo_counter)
 	{
 		if (pthread_create(&monitor->philo_threads[loop_counter], NULL,
-				(void *)philo_loop, (void *)(&philos[loop_counter])))
+				philo_loop, (void *)(&philos[loop_counter])))
 			monitor->printer.alive = NOT_ALIVE;
 		usleep(100);
 	}

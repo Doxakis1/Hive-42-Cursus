@@ -6,34 +6,20 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 02:26:47 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 17:02:24 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:14:03 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	find_my_fork_two(int id, int philo_count)
+static int	find_my_fork_two(int id)
 {
-	if (id == philo_count - 1)
-		return (id);
-	if (id == 0)
-		return (philo_count - 1);
-	if (id % 2)
-		return (id);
-	return (id - 1);
+	return (id);
 }
 
 static int	find_my_fork_one(int id, int philo_count)
 {
-	if (id == 0)
-		return (0);
-	if (id == philo_count - 1)
-		return (id - 1);
-	if (id == 0)
-		return (0);
-	if (id % 2)
-		return (id - 1);
-	return (id);
+	return ((id + 1) % philo_count);
 }
 
 static int	initialize_loop(t_philo *philo, int id, t_monitor *monitor,
@@ -44,7 +30,7 @@ static int	initialize_loop(t_philo *philo, int id, t_monitor *monitor,
 
 	philo_count = monitor->philo_counter;
 	philo->parameters = *myparameters;
-	philo->fork_two = &monitor->forks[find_my_fork_two(id, philo_count)];
+	philo->fork_two = &monitor->forks[find_my_fork_two(id)];
 	philo->fork_one = &monitor->forks[find_my_fork_one(id, philo_count)];
 	philo->id = id + 1;
 	philo_count = pthread_mutex_init(&philo->death_lock, NULL);

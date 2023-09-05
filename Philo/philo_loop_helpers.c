@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:04:20 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 17:04:28 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:43:50 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ int	check_death(t_philo *my_data)
 	return (ret);
 }
 
-void	sleep_mod(t_philo *my_data, long long time_to_sleep)
+void	sleep_mod(t_philo *my_data, long time_to_sleep)
 {
-	long long	current_time;
-	long long	ll_time_to_sleep;
+	long	current_time;
 
-	ll_time_to_sleep = (long long)time_to_sleep;
 	current_time = get_time();
 	while (!check_death(my_data)
-		&& (get_time() - current_time) < ll_time_to_sleep)
+		&& (get_time() - current_time) < time_to_sleep)
 	{
 		usleep(500);
 	}

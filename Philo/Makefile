@@ -6,12 +6,12 @@
 #    By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 19:03:31 by mkaratzi          #+#    #+#              #
-#    Updated: 2023/08/26 05:27:25 by mkaratzi         ###   ########.fr        #
+#    Updated: 2023/09/05 17:20:20 by mkaratzi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-COMPILE_FLAGS = -Wall -Wextra -Werror
+COMPILE_FLAGS = -Wall -Wextra -Werror -O0
 SRC = \
 	ft_atou_to_dest.c print_errors.c check_invalid_arguments.c get_time.c \
 	initialize_monitor.c initialize_print_states.c initialize_philo_threads.c\

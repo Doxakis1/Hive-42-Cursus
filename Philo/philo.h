@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:53:04 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 17:01:15 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:39:59 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_parameters{
 	int			time_to_eat;
 	int			time_to_sleep;
 	int			times_eaten;
-	long long	time_last_ate;
+	long	time_last_ate;
 }t_parameters;
 
 typedef struct s_fork{
@@ -41,8 +41,8 @@ typedef struct s_fork{
 
 typedef struct s_printer{
 	pthread_mutex_t	printer_lock;
-	long long		time_since_start;
-	long long		current_time;
+	long		start_time;
+	long		current_time;
 	short			alive;
 	char			print_states[5][50];
 }t_printer;
@@ -80,7 +80,7 @@ int				check_invalid_arguments(int argc, char const *argv[],
 					long *inputarray);
 
 // get_time.c
-long long		get_time(void);
+long		get_time(void);
 
 // initialize_monitor.c
 int				initialize_monitor(t_monitor *monitor, long philo_count,
@@ -110,10 +110,10 @@ int				initialize_philos(long array[5], t_monitor *monitor,
 void			start_simulation(t_monitor *monitor, t_philo *philos);
 
 // philo_loop.c
-void			philo_loop(void *data);
+void			*philo_loop(void *data);
 
 //philo_loop_helpers.c
 int				check_death(t_philo *my_data);
-void			sleep_mod(t_philo *my_data, long long time_to_sleep);
+void			sleep_mod(t_philo *my_data, long time_to_sleep);
 
 #endif
