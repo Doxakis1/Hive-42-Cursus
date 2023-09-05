@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:53:04 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 18:18:34 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:36:21 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_fork{
 typedef struct s_printer{
 	pthread_mutex_t	printer_lock;
 	long			start_time;
-	long			current_time;
 	short			alive;
 	char			print_states[5][50];
 }t_printer;
