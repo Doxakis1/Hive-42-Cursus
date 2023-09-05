@@ -44,7 +44,7 @@ int	print_loner_error(long array[5])
 	long	start_time;
 
 	start_time = get_time();
-	printf("%zu philo 1 is thinking\n%zu philo 1 grabbed afork\n",
+	printf("%zu philo 1 is thinking\n%zu philo 1 has taken a fork\n",
 		get_time() - start_time, get_time() - start_time);
 	usleep(array[1] * 1000);
 	printf("%zu philo 1 died\n", get_time() - start_time);
