@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:17:17 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 05:17:59 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:31:10 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	free_everything(t_monitor *monitor, t_philo **philos)
 	index = monitor->philo_counter - 1;
 	destroy_forks(monitor->forks, index);
 	free(*philos);
+	free(monitor->philo_threads);
 	return (0);
 }
 
