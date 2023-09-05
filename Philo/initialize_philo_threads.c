@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_invalid_arguments.c                          :+:      :+:    :+:   */
+/*   initialize_philo_threads.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 03:35:13 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 03:30:17 by mkaratzi         ###   ########.fr       */
+/*   Created: 2023/08/24 01:45:32 by mkaratzi          #+#    #+#             */
+/*   Updated: 2023/08/26 03:44:44 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_invalid_arguments(int argc, char const *argv[], long *inputarray)
+int	free_philo_threads(pthread_t	*philo_threads)
 {
-	int	loop_counter;
+	free(philo_threads);
+	return (0);
+}
+
+pthread_t	*initialize_philo_threads(const int philo_count)
+{
+	pthread_t	*philo_thread;
+	int			loop_counter;
 
 	loop_counter = 0;
-	if (argc != 5 && argc != 6)
-		return (1);
-	if (argc == 5)
-		inputarray[4] = -1;
-	while (++loop_counter < argc)
+	philo_thread = (pthread_t *)malloc(sizeof(pthread_t) * philo_count);
+	if (!philo_thread)
+		return (philo_thread);
+	while (loop_counter < philo_count)
 	{
-		if (ft_atou_to_dest(argv[loop_counter], &inputarray[loop_counter - 1],
-				1))
-			return (1);
+		philo_thread[loop_counter] = 0;
+		loop_counter++;
 	}
-	return (0);
+	return (philo_thread);
 }

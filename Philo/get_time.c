@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_invalid_arguments.c                          :+:      :+:    :+:   */
+/*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 03:35:13 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 03:30:17 by mkaratzi         ###   ########.fr       */
+/*   Created: 2023/08/24 23:52:21 by mkaratzi          #+#    #+#             */
+/*   Updated: 2023/08/26 05:17:04 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_invalid_arguments(int argc, char const *argv[], long *inputarray)
+long long	get_time(void)
 {
-	int	loop_counter;
+	struct timeval	current_time;
 
-	loop_counter = 0;
-	if (argc != 5 && argc != 6)
-		return (1);
-	if (argc == 5)
-		inputarray[4] = -1;
-	while (++loop_counter < argc)
-	{
-		if (ft_atou_to_dest(argv[loop_counter], &inputarray[loop_counter - 1],
-				1))
-			return (1);
-	}
-	return (0);
+	gettimeofday(&current_time, NULL);
+	return ((current_time.tv_sec) * 1000 + (current_time.tv_usec / 1000));
 }
