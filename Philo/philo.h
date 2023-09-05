@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:53:04 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 05:38:49 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:01:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct s_philo{
 	t_fork			*fork_two;
 	t_fork			*fork_one;
 	t_printer		*printer;
-	pthread_mutex_t death_lock;
-	pthread_mutex_t eaten_lock;
+	pthread_mutex_t	death_lock;
+	pthread_mutex_t	eaten_lock;
 	int				id;
 	short			alive;
 }t_philo;
@@ -83,10 +83,13 @@ int				check_invalid_arguments(int argc, char const *argv[],
 long long		get_time(void);
 
 // initialize_monitor.c
-int				initialize_monitor(t_monitor *monitor, long philo_count, int times_to_eat);
+int				initialize_monitor(t_monitor *monitor, long philo_count,
+					int times_to_eat);
 
 // initialize_print_states.c  
 int				initialize_print_states(char print_states[5][50]);
+void			initialize_parameters(long *inputarray,
+					t_parameters *parameters);
 
 // initialize_philo_threads.c 
 pthread_t		*initialize_philo_threads(const int philo_count);

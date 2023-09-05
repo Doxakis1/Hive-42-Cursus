@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 04:23:49 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 05:49:05 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:05:27 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static int	check_dead(t_philo *philo, int philo_count)
 {
-	int loop;
+	int	loop;
 
 	loop = -1;
 	while (++loop < philo_count)
 	{
 		pthread_mutex_lock(&philo[loop].death_lock);
 		if (get_time() - philo->parameters.time_last_ate
-		> (long long)philo->parameters.time_to_die && !philo[loop].alive)
+			> (long long)philo->parameters.time_to_die && !philo[loop].alive)
 		{
 			pthread_mutex_lock(&philo->printer->printer_lock);
 			philo->printer->alive = NOT_ALIVE;
@@ -36,10 +36,10 @@ static int	check_dead(t_philo *philo, int philo_count)
 	return (0);
 }
 
-static int check_meal_times(t_monitor *monitor, t_philo *philos)
+static int	check_meal_times(t_monitor *monitor, t_philo *philos)
 {
-	int ret;
-	int loop;
+	int	ret;
+	int	loop;
 
 	loop = 0;
 	if (monitor->times_eaten_done <= 0)
@@ -58,7 +58,7 @@ static int check_meal_times(t_monitor *monitor, t_philo *philos)
 		pthread_mutex_unlock(&philos[loop].eaten_lock);
 		loop++;
 	}
-	return ret;
+	return (ret);
 }
 
 static void	await_the_philos(t_monitor *monitor, t_philo *philos)
@@ -70,7 +70,8 @@ static void	await_the_philos(t_monitor *monitor, t_philo *philos)
 	usleep(5000);
 	while (1)
 	{
-		if (check_dead(philos, monitor->philo_counter) || !check_meal_times(monitor, philos))
+		if (check_dead(philos, monitor->philo_counter)
+			|| !check_meal_times(monitor, philos))
 			break ;
 	}
 	philo = -1;
@@ -91,7 +92,7 @@ void	start_simulation(t_monitor *monitor, t_philo *philos)
 	{
 		if (pthread_create(&monitor->philo_threads[loop_counter], NULL,
 				(void *)philo_loop, (void *)(&philos[loop_counter])))
-				monitor->printer.alive = NOT_ALIVE;
+			monitor->printer.alive = NOT_ALIVE;
 		usleep(100);
 	}
 	await_the_philos(monitor, philos);

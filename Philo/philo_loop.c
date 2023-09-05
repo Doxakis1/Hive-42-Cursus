@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 04:22:43 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 05:48:23 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:02:43 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	print_my_state(int state, t_philo *my_data)
 	pthread_mutex_unlock(&my_data->printer->printer_lock);
 	my_data->alive = NOT_ALIVE;
 }
+
 static void	philo_eat(t_philo *my_data)
 {
 	pthread_mutex_lock(&my_data->fork_one->fork_lock);

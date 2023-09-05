@@ -6,25 +6,13 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 02:26:47 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 05:44:43 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:02:24 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	initialize_parameters(long *inputarray, t_parameters *parameters)
-{
-	int	i;
-
-	i = 1;
-	parameters->time_to_die = (int)inputarray[i++];
-	parameters->time_to_eat = (int)inputarray[i++];
-	parameters->time_to_sleep = (int)inputarray[i++];
-	parameters->times_eaten = (int)inputarray[i++];
-	parameters->time_last_ate = 0;
-}
-
-static int	find_my_fork_two(int id,  int philo_count)
+static int	find_my_fork_two(int id, int philo_count)
 {
 	if (id == philo_count - 1)
 		return (id);
@@ -37,7 +25,6 @@ static int	find_my_fork_two(int id,  int philo_count)
 
 static int	find_my_fork_one(int id, int philo_count)
 {
-	
 	if (id == 0)
 		return (0);
 	if (id == philo_count - 1)
@@ -54,7 +41,6 @@ static int	initialize_loop(t_philo *philo, int id, t_monitor *monitor,
 {
 	int		philo_count;
 	int		check;
-	
 
 	philo_count = monitor->philo_counter;
 	philo->parameters = *myparameters;
@@ -78,8 +64,8 @@ static int	initialize_loop(t_philo *philo, int id, t_monitor *monitor,
 
 static int	destroy_philos_until(t_philo *philos, int counter)
 {
-	static int x = 0;
-	
+	static int	x = 0;
+
 	while (x < counter)
 	{
 		pthread_mutex_destroy(&philos[x].death_lock);
@@ -103,11 +89,11 @@ int	initialize_philos(long array[5], t_monitor *monitor, t_philo **philos)
 		return (1);
 	while (loop_counter < monitor->philo_counter && !loop_check)
 	{
-		loop_check =initialize_loop(&((t_philo *)*philos)[loop_counter], loop_counter,
-			monitor, &myparameters);
+		loop_check = initialize_loop(&((t_philo *)*philos)[loop_counter],
+				loop_counter, monitor, &myparameters);
 		loop_counter++;
 	}
 	if (loop_check)
-		return (destroy_philos_until(*philos,loop_counter));
+		return (destroy_philos_until(*philos, loop_counter));
 	return (0);
 }

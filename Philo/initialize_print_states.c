@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 02:46:39 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/08/26 03:29:57 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:00:46 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,16 @@ int	initialize_print_states(char print_states[5][50])
 	my_strlcpy(print_states[3], "%zu %d is thinking\n", 20);
 	my_strlcpy(print_states[4], "%zu %d died\n", 13);
 	return (0);
+}
+
+void	initialize_parameters(long *inputarray, t_parameters *parameters)
+{
+	int	i;
+
+	i = 1;
+	parameters->time_to_die = (int)inputarray[i++];
+	parameters->time_to_eat = (int)inputarray[i++];
+	parameters->time_to_sleep = (int)inputarray[i++];
+	parameters->times_eaten = (int)inputarray[i++];
+	parameters->time_last_ate = 0;
 }
