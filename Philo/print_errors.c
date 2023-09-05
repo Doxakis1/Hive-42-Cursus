@@ -41,7 +41,7 @@ int	print_philo_creation_error(void)
 
 int	print_loner_error(long array[5])
 {
-	long start_time;
+	long	start_time;
 
 	start_time = get_time();
 	printf("%zu philo 1 is thinking\n%zu philo 1 grabbed afork\n",
