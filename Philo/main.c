@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:17:17 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 19:31:10 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:34:54 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@ static int	free_everything(t_monitor *monitor, t_philo **philos)
 {
 	int	index;
 
-	index = monitor->philo_counter - 1;
+	index = monitor->philo_counter;
+	while (--index >= 0)
+	{
+		pthread_mutex_destroy(&philos[0][index].death_lock);
+		pthread_mutex_destroy(&philos[0][index].eaten_lock);
+	}
 	destroy_forks(monitor->forks, index);
 	free(*philos);
 	free(monitor->philo_threads);
