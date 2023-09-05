@@ -14,33 +14,33 @@
 
 int	print_args_error(void)
 {
-	write(2, "Sorry, but this is not how you run philo!\n", 42);
-	write(2, "Philo takes either 4 or 5 arguments!\n", 37);
-	write(2, "All arguments should be positive int size integers!\n", 52);
-	write(2, "The following arguments should be provided", 42);
-	write(2, " in correct order:\n", 19);
-	write(2, "1)number_of_philosophers\n", 25);
-	write(2, "2)time_to_die\n", 14);
-	write(2, "3)time_to_eat\n", 14);
-	write(2, "4)time_to_sleep\n", 16);
-	write(2, "Optional 5)number_of_times_each_philosopher_must_eat\n", 53);
+	print_error("Sorry, but this is not how you run philo!\n");
+	print_error("Philo takes either 4 or 5 arguments!\n");
+	print_error("All arguments should be positive int size integers!\n");
+	print_error("The following arguments should be provided");
+	print_error(" in correct order:\n");
+	print_error("1)number_of_philosophers\n");
+	print_error("2)time_to_die\n");
+	print_error("3)time_to_eat\n");
+	print_error("4)time_to_sleep\n");
+	print_error("Optional 5)number_of_times_each_philosopher_mustime_to_eat\n");
 	return (1);
 }
 
-int	print_monitor_error(void)
+int	print_error(const char *str)
 {
-	write(2, "Sorry, the initialization of the monitor failed :c\n", 51);
-	return (1);
-}
+	size_t	index;
 
-int	print_philo_creation_error(void)
-{
-	write(2, "Sorry, the creation of philos has failed :c\n", 44);
+	index = 0;
+	while (str[index])
+	{
+		write(2, &str[index], 1);
+	}
 	return (1);
 }
 
 int	print_loner_error(void)
 {
-	write(2, "Sorry, it takes atleast two to dine at this restaurant :c\n", 59);
+	print_error("Sorry, it takes atleast two to dine at this restaurant :c\n");
 	return (1);
 }

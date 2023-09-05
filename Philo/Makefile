@@ -13,10 +13,7 @@
 NAME = philo
 COMPILE_FLAGS = -Wall -Wextra -Werror
 SRC = \
-	ft_atou_to_dest.c print_errors.c check_invalid_arguments.c get_time.c \
-	initialize_monitor.c initialize_print_states.c initialize_philo_threads.c\
-	initialize_forks.c initialize_philos.c simulation.c philo_loop.c main.c \
-	philo_loop_helpers.c \
+	check_invalid_arguments.c initialize_simulation.c main.c philo.c print_errors.c  utils.c\
 
 .PHONY: all clean fclean re
 
