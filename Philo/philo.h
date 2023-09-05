@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:53:04 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 19:36:21 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 22:04:56 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int				ft_atou_to_dest(const char *str, long *dst, int sign);
 int				print_args_error(void);
 int				print_monitor_error(void);
 int				print_philo_creation_error(void);
-int				print_loner_error(void);
+int				print_loner_error(long array[5]);
 
 // check_invalid_arguments.c
 int				check_invalid_arguments(int argc, char const *argv[],

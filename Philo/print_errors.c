@@ -39,8 +39,14 @@ int	print_philo_creation_error(void)
 	return (1);
 }
 
-int	print_loner_error(void)
+int	print_loner_error(long array[5])
 {
-	write(2, "Sorry, it takes atleast two to dine at this restaurant :c\n", 59);
+	long start_time;
+
+	start_time = get_time();
+	printf("%zu philo 1 is thinking\n%zu philo 1 grabbed afork\n",
+		get_time() - start_time, get_time() - start_time);
+	usleep(array[1] * 1000);
+	printf("%zu philo 1 died\n", get_time() - start_time);
 	return (1);
 }

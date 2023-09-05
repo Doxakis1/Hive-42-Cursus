@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:17:17 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 19:35:46 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 22:03:59 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char const *argv[])
 	if (check_invalid_arguments(argc, argv, &inputarray[0]))
 		return (print_args_error());
 	if (inputarray[0] == 1)
-		return (print_loner_error());
+		return (print_loner_error(inputarray));
 	if (initialize_monitor(&monitor, inputarray[0], inputarray[4]))
 		return (print_monitor_error());
 	if (initialize_philos(inputarray, &monitor, &philos))
