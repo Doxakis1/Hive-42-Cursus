@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 02:17:17 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/09/05 22:26:32 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/09/05 23:02:14 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	free_everything(t_monitor *monitor, t_philo **philos)
 int	main(int argc, char const *argv[])
 {
 	long			inputarray[5];
-	t_monitor		monitor;
+	t_monitor monitor;
 	t_philo			*philos;
 
 	if (check_invalid_arguments(argc, argv, &inputarray[0]))
