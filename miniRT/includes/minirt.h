@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 10:32:54 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/10/19 08:56:27 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:21:43 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_cylinder	t_cylinder;
 typedef struct s_plane		t_plane;
 typedef struct s_sphere		t_sphere;
 
+int			check_camera(t_scene *scene);
+
 //window
 int			handle_window(t_scene *img);
 int			exit_button(t_scene *img);
@@ -63,7 +65,7 @@ int			sanity_check(t_vec3 origin, t_vec3 direction, t_vec3 hit);
 
 //normals.c
 void		get_normal(t_scene *img, t_hit *hit);
-void		get_plane_normal(t_object *data, t_scene *img);
+void		get_plane_normal(t_object *data, t_scene *img, t_hit hit);
 void		get_sphere_normal(t_object *data, t_scene *img, t_hit *hit);
 
 //light.c

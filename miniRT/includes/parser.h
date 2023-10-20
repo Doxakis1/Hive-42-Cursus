@@ -6,20 +6,23 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 09:19:26 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/10/18 12:40:37 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:45:15 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
+
 # include "minirt.h"
 # include "../libft/includes/get_next_line.h"
+# define INVALID_INPUT 4
 # define OPEN_FAIL 1
 # define INVALID_OBJECTS 2
 # define MISSING_KEY_ELEMENTS 3
 # define INVALID_INPUT 4
 # define MALLOC_FAILED 5
 # define EXCESS_ELEMENTS 6
+# define INSIDE_OBJECT 7
 # define LIGHT_SOURCE 0
 # define AMBIENT_LIGHT 1
 # define CAMERA 2
@@ -27,9 +30,6 @@
 # define OBJECT_SPHERE 4
 # define OBJECT_PLANE 5
 # define OBJECT_CYLINDER 6
-
-//TODO: Add the following structs to the main header file preferably
-//START
 
 typedef unsigned int	t_color;
 typedef short			t_degrees;
@@ -196,6 +196,6 @@ short		get_camera(t_scene *scene, const char *str);
 
 //get_new_object.c
 short		get_new_object(t_object *scene_object, const char *str);
-void		free_all_objects(t_object *head);
+void		free_all_objects(t_object *head, int instruction);
 
 #endif
