@@ -6,12 +6,11 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:34:15 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/11/15 10:24:04 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:11:19 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Megaphone.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -23,9 +22,10 @@ int main(int argc, char const *argv[])
 		default:
 			for (int i = 1 ; i < argc ; i++)
 			{
-				Megaphone string = Megaphone(argv[i]);
-				string.toUpper();
-				std::cout << string.getString() << " ";
+				for (int k = 0 ; argv[i][k] != '\0' ; k ++)
+					std::cout << static_cast<char>(std::toupper(argv[i][k]));
+				if (i != argc - 1)
+					std::cout << " ";
 			}
 			std::cout << std::endl;			
 			break ;

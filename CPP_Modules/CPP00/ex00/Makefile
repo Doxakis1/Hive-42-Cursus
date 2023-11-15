@@ -13,7 +13,7 @@ $(NAME): $(SRC)
 
 clean: 
 	rm -f $(NAME)
-fclean: 
-	make clean
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
