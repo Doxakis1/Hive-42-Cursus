@@ -7,6 +7,9 @@
 class PhoneBook
 {
 private:
+    Contact  contactArray[9];
+    int m_index;
+    int m_currentlySaved;
     enum e_Input
     {
         ADD,
@@ -15,10 +18,7 @@ private:
         ERROR,
         CONTINUE
     };
-    static Contact  contactArray[9];
-    static  int m_index;
-    static  int m_currentlySaved;
-    static e_Input m_input;
+    e_Input m_input;
 public:
     PhoneBook();
     PhoneBook(PhoneBook& copy);

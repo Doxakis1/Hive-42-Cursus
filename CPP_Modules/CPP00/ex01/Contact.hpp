@@ -10,7 +10,6 @@ private:
    std::string m_nickName;
    std::string m_phoneNumber;
    std::string m_darkestSecret;
-
 public:
     Contact();
     Contact(Contact& copy);

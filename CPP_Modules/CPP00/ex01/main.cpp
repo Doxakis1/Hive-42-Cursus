@@ -6,8 +6,8 @@ int main(void)
 
     while(pBook.isActive())
     {
-        pBook.update();
         pBook.getInput();
+        pBook.update();
     }
     return (0);
 }
