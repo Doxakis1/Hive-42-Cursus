@@ -2,12 +2,12 @@
 
 int main(void)
 {
-    PhoneBook PhoneBook;
+    PhoneBook pBook;
 
-    while(PhoneBook.isActive())
+    while(pBook.isActive())
     {
-        PhoneBook.update();
-        PhoneBook.getInput();
+        pBook.update();
+        pBook.getInput();
     }
     return (0);
 }
