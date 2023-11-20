@@ -1,3 +1,5 @@
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 #include "Contact.hpp"
 #include <iostream>
 #include <string>
@@ -28,3 +30,5 @@ public:
     void    printBoxed(const std::string& str);
     ~PhoneBook();
 };
+
+#endif
