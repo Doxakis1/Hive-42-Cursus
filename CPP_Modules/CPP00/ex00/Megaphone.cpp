@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:34:15 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/11/15 12:11:19 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:12:15 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,18 @@
 
 int main(int argc, char const *argv[])
 {
-	switch (argc)
+	if (argc == 1)
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+	else
 	{
-		case 1:
-			std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-			break ;
-		default:
-			for (int i = 1 ; i < argc ; i++)
-			{
-				for (int k = 0 ; argv[i][k] != '\0' ; k ++)
-					std::cout << static_cast<char>(std::toupper(argv[i][k]));
-				if (i != argc - 1)
-					std::cout << " ";
-			}
-			std::cout << std::endl;			
-			break ;
+		for (int i = 1 ; i < argc ; i++)
+		{
+			std::string output(argv[i]);
+			for (size_t k = 0; k < output.length(); k++)
+				output.at(k) = std::toupper(output.at(k));
+			std::cout << output;
+		}
+		std::cout << std::endl;
 	}
 	return 0;
 }

@@ -6,9 +6,8 @@ PhoneBook::PhoneBook()
     m_index = 0;
 }
 
-PhoneBook::PhoneBook(PhoneBook& copy)
+PhoneBook::PhoneBook(PhoneBook&)
 {
-    (void)copy;
 }
 
 void PhoneBook::update()

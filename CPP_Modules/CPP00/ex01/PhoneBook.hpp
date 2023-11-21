@@ -19,9 +19,9 @@ private:
         CONTINUE
     };
     e_Input m_input;
+    PhoneBook(PhoneBook&);
 public:
     PhoneBook();
-    PhoneBook(PhoneBook& copy);
     short   isActive();
     void    getInput();
     void    update();
