@@ -24,12 +24,12 @@ void PhoneBook::update()
         case PhoneBook::ADD:
             checker = addContact();
             if (!checker)
-                std::cerr << "Failed to add new contact!" << std::endl << std::endl;
+                std::cout << "Failed to add new contact!" << std::endl << std::endl;
             break ;
         case PhoneBook::SEARCH:
             checker = searchContacts();
             if (!checker)
-                std::cerr << "Failed to search contacts!" << std::endl << std::endl;
+                std::cout << "Failed to search contacts!" << std::endl << std::endl;
             break ;
         case PhoneBook::EXIT:
             checker = true;
