@@ -68,7 +68,7 @@ bool    Contact::setnName(std::string str)
 {
     if (str.length() <= 0)
         return (false);
-    // I will allow nicknames to be of any characters since they are 
+    // I will allow nicknames to be of any characters since they are well... nicknames xd
     m_nickName = str;
     return (true);
 }
@@ -106,7 +106,7 @@ bool    Contact::setdSecret(const std::string str)
 
     if (str.length() <= 0)
         return (false);
-    // I will allow secrets to contain all characters too.
+    // I will allow secrets to contain any characters too!
     m_darkestSecret = str;
     return (true);
 }

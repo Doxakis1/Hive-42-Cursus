@@ -1,4 +1,6 @@
 #include "PhoneBook.hpp"
+#include <exception>
+#include <iostream>
 
 PhoneBook::PhoneBook()
 {
@@ -22,17 +24,17 @@ void PhoneBook::update()
         case PhoneBook::ADD:
             checker = addContact();
             if (!checker)
-                std::cerr << "Failed to add new contact!" << std::endl;
+                std::cerr << "Failed to add new contact!" << std::endl << std::endl;
             break ;
         case PhoneBook::SEARCH:
             checker = searchContacts();
             if (!checker)
-                std::cerr << "Failed to search contacts!" << std::endl;
+                std::cerr << "Failed to search contacts!" << std::endl << std::endl;
             break ;
         case PhoneBook::EXIT:
             checker = true;
             m_input = PhoneBook::EXIT;
-            break ;
+            return ;
         default:
             break;
     }
@@ -109,7 +111,7 @@ bool   PhoneBook::addContact()
         return (false);
     if (contactArray[8].setpNumber(input) == false)
         return (false);
-    std::cout << "Enter deepest secret name:";
+    std::cout << "Enter deepest secret:";
     std::getline(std::cin, input);
     if (std::cin.good() == false)
         return (false);
@@ -182,7 +184,12 @@ bool   PhoneBook::searchContacts()
     std::cout << std::endl;
     std::cout << "Type the index of the contact you want to further inspect:";
     std::getline(std::cin, str);
-    length = std::stoi(str);
+    try {
+        length = std::stoi(str);
+    }catch (std::exception& e)
+    {
+        return (false);
+    }
     if (std::cin.good() == false || length < 0 || length >= m_currentlySaved)
         return (false);
     else

@@ -11,6 +11,6 @@ all: $(NAME)
 $(NAME): $(SRC)
 	c++ $(FLAGS) $(SRC) -o $(NAME)
 
-fclean: clean
+fclean:
 	rm -f $(NAME)
 re: fclean all
