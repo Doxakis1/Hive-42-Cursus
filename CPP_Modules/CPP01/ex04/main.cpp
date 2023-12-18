@@ -6,13 +6,13 @@
 
 int create_and_replace(const std::string& filename, const std::string& find, const std::string& replace) 
 {
-    std::ifstream in_filestream(filename, std::ios::in | std::ios::binary);
+    std::ifstream in_filestream(filename, std::ios::in);
     if (!in_filestream.is_open()) {
         std::cout << "Error opening the input file: " << filename << std::endl;
         return EXIT_FAILURE;
     }
     std::string new_file_name = filename + ".replace";
-    std::ofstream out_filestream(new_file_name, std::ios::out | std::ios::binary);
+    std::ofstream out_filestream(new_file_name, std::ios::out);
     if (!out_filestream.is_open()) {
         std::cout << "Error opening/creating the output file: " << new_file_name << std::endl;
         return EXIT_FAILURE;
