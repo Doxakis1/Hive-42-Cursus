@@ -27,7 +27,8 @@ int create_and_replace(const std::string& filename, const std::string& find, con
         size_t pos = 0;
         size_t prev_pos = 0;
         while ((pos = file_content.find(find, prev_pos)) != std::string::npos) {
-            holder  = file_content.substr(prev_pos, pos);
+            holder  = file_content.substr(prev_pos, pos - prev_pos);
+            std::cout << prev_pos << " and " << pos << std::endl << holder << std::endl;
             out_filestream << holder;
             out_filestream << replace;
             prev_pos = pos + find.length();
