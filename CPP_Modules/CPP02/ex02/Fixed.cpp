@@ -106,26 +106,33 @@ Fixed Fixed::operator/(const Fixed &other) const
 
 Fixed& Fixed::operator++()
 {
-    return ++m_value, *this;
+    ++m_value;
+    
+    return *this;
 }
 
 Fixed& Fixed::operator--()
 {
-    return --m_value, *this;
+    --m_value;
+    return *this;
 }
 
 Fixed Fixed::operator++(int)
 {
     Fixed   output(*this);
 
-    return ++m_value, output;
+    ++m_value;
+
+    return output;
 }
 
 Fixed Fixed::operator--(int)
 {
     Fixed   output(*this);
 
-    return --m_value, output;
+    --m_value;
+
+    return output;
 }
 
 const Fixed &Fixed::min(const Fixed &first, const Fixed& second)
