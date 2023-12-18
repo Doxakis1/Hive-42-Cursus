@@ -3,7 +3,7 @@
 int main()
 {
     Fixed a;
-    Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+    Fixed const b( Fixed( 5.15f ) * Fixed( 4.2f ) );
 
     std::cout << a << std::endl;
     
