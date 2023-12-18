@@ -4,7 +4,7 @@ const int Fixed::m_fixed_bits = 8;
 
 Fixed::Fixed() : m_value(0) {}
 
-Fixed::Fixed(const Fixed &fixed) : m_value(fixed.m_value) {}
+Fixed::Fixed(const Fixed &fixed) : m_value(fixed.getRawBits()) {}
 
 Fixed::Fixed(const int from) : m_value(from << m_fixed_bits) {}
 
@@ -16,7 +16,7 @@ Fixed& Fixed::operator=(const Fixed &fixed)
 {
     if (this == &fixed)
         return *this;
-    m_value = fixed.getRawBits();
+    this->setRawBits(fixed.getRawBits());
     return *this;
 }
 
