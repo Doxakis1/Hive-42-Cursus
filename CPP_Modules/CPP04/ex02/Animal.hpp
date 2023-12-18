@@ -16,7 +16,7 @@ class Animal
       Animal &operator=(const Animal &other);
       virtual ~Animal();
 
-      virtual void makeSound(void) const = 0;
+      virtual void makeSound(void) const = 0; // prevents Animal to exist by eachself as the makeSound method is forced to be defined
       std::string get_type(void) const;
 };
 
