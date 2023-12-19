@@ -31,7 +31,7 @@ Cat::~Cat()
 
 void Cat::makeSound(void) const
 {
-  std::cout << m_type << " noises..." << std::endl;
+  std::cout << "Cat noises..." << std::endl;
 }
 std::string Cat::get_type(void) const
 {
