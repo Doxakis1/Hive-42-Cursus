@@ -35,6 +35,9 @@ std::string &Brain::getIdea(int index)
 void Brain::setIdea(int index,  std::string idea)
 {
   if (index < 100 && index >= 0)
-    this->m_ideas[index] = idea;
+    {
+this->m_ideas[index] = idea;
+return;
+}
   throw std::out_of_range(std::string("Out of bounds access"));
 }
