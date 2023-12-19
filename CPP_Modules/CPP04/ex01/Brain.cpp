@@ -1,4 +1,5 @@
 #include "Brain.hpp"
+#include <stdexcept>
 
 Brain::Brain()
 {
@@ -27,14 +28,14 @@ Brain::~Brain()
 
 std::string &Brain::getIdea(int index)
 {
-  static std::string error_message("Out of array bounds!");
   if (index < 100 && index >= 0)
     return (this->m_ideas[index]);
-  return error_message;
+  throw std::out_of_range(std::string("Out of bounds access"));
 }
 
 void Brain::setIdea(int index,  std::string idea)
 {
   if (index < 100 && index >= 0)
     this->m_ideas[index] = idea;
+  throw std::out_of_range(std::string("Out of bounds access"));
 }

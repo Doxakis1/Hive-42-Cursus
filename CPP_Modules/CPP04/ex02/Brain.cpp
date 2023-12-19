@@ -9,6 +9,8 @@ Brain::Brain(const Brain &copy)
 {
   std::cout << "Brain copy constructor called" << std::endl;
   *this = copy;
+  for (int i = 0; i < 100; i++)
+    this->m_ideas[i] = copy.m_ideas[i];
 }
 Brain &Brain::operator=(const Brain &other)
 {
@@ -25,14 +27,14 @@ Brain::~Brain()
 
 std::string &Brain::getIdea(int index)
 {
-  static std::string error_message("Out of array bounds!");
   if (index < 100 && index >= 0)
     return (this->m_ideas[index]);
-  return error_message;
+  throw std::out_of_range(std::string("Out of bounds access"));
 }
 
 void Brain::setIdea(int index,  std::string idea)
 {
   if (index < 100 && index >= 0)
     this->m_ideas[index] = idea;
+  throw std::out_of_range(std::string("Out of bounds access"));
 }

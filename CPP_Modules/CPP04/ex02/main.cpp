@@ -2,6 +2,7 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
+#include <stdexcept>
 
 int main(void)
 {
@@ -15,18 +16,42 @@ int main(void)
       AnimalArray[i] = new Cat();
   }
 
+  
   std::cout << "\nDeep copy test!" << std::endl;
 	Cat cat;
-	cat.getBrain().setIdea(0, "I LOVE TUNA");
+  try{
+    cat.getBrain().setIdea(0, "I LOVE TUNA");
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "Exception: " << e.what() << std::endl;
+  }
 	Cat copyCat(cat);
-	copyCat.getBrain().setIdea(0, "I LOVE SARDINS");
+  try{
+    copyCat.getBrain().setIdea(0, "I ADMIRE TUNA");
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "Exception: " << e.what() << std::endl;
+  }
 	Cat assignCat = cat;
-	assignCat.getBrain().setIdea(0, "I HATE FISH");
-	std::cout << "Cat 1: " << cat.getBrain().getIdea(0) << std::endl;
-	std::cout << "Cat 2: " << copyCat.getBrain().getIdea(0) << std::endl;
-	std::cout << "Cat 3: " << assignCat.getBrain().getIdea(0) << std::endl;
-	std::cout << std::endl;
-
+  try{
+    assignCat.getBrain().setIdea(0, "I HATE TUNA");
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "Exception: " << e.what() << std::endl;
+  }
+  try{
+    std::cout << "Cat 1: " << cat.getBrain().getIdea(0) << std::endl;
+	  std::cout << "Cat 2: " << copyCat.getBrain().getIdea(0) << std::endl;
+	  std::cout << "Cat 3: " << assignCat.getBrain().getIdea(0) << std::endl;
+	  std::cout << std::endl;
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "Exception: " << e.what() << std::endl;
+  }
   AnimalArray[0]->makeSound();
   AnimalArray[1]->makeSound();
   std::cout << std::endl;
@@ -34,7 +59,7 @@ int main(void)
   for (int i = 0; i < 6; i++)
     delete AnimalArray[i];
 
-	//Animal test;
-
+  //Animal test;
+ 
   return (0);
 }
