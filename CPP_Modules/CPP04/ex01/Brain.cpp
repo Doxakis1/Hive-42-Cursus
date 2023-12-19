@@ -27,10 +27,14 @@ Brain::~Brain()
 
 std::string &Brain::getIdea(int index)
 {
-  return (this->m_ideas[index]);
+  static std::string error_message("Out of array bounds!");
+  if (index < 100 && index >= 0)
+    return (this->m_ideas[index]);
+  return error_message;
 }
 
 void Brain::setIdea(int index,  std::string idea)
 {
-  this->m_ideas[index] = idea;
+  if (index < 100 && index >= 0)
+    this->m_ideas[index] = idea;
 }
