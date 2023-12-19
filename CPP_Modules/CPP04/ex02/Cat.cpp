@@ -8,17 +8,18 @@ Cat::Cat() : Animal("Cat")
 
 Cat::Cat(const Cat &copy) : Animal(copy.m_type)
 {
-   *this = copy; 
    std::cout << "Cat copy constructor called" << std::endl;
-   this->brain = new Brain(*copy.brain); // this is done because we otherwise have a copy of the pointer to the copy brain
+   this->brain = NULL;
+   *this = copy; 
 }
 
 Cat &Cat::operator=(const Cat &other)
 {
-  this->m_type = other.m_type; //well any cat should be already same 
-  delete this->brain;
-  this->brain = new Brain(*other.brain); // this is done because we want a copy of the other brain but not just a copy of the pointer
-  std::cout << "Cat copy assignment operator called" << std::endl;
+  std::cout << "Cat copy assignment operator called" << this->brain << std::endl;
+  this->m_type = other.m_type; //well any cat should be already same
+  if (this->brain)
+    delete this->brain;
+  this->brain = new Brain(*other.brain); // this is done because we want a copy of the other brain but not just a copy of the pointer 
   return (*this);
 }
 

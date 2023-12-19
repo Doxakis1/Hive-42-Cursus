@@ -21,6 +21,7 @@ int main(void)
 	Cat copyCat(cat);
 	copyCat.getBrain().setIdea(0, "I LOVE SARDINS");
 	Cat assignCat = cat;
+  assignCat = cat;
 	assignCat.getBrain().setIdea(0, "I HATE FISH");
 	std::cout << "Cat 1: " << cat.getBrain().getIdea(0) << std::endl;
 	std::cout << "Cat 2: " << copyCat.getBrain().getIdea(0) << std::endl;
