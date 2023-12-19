@@ -6,7 +6,7 @@ Cat::Cat() : Animal("Cat")
   this->brain = new Brain();
 }
 
-Cat::Cat(const Cat &copy) : Animal(copy.m_type)
+Cat::Cat(const Cat &copy) : Animal(copy)
 {
    std::cout << "Cat copy constructor called" << std::endl;
    this->brain = NULL;
@@ -26,7 +26,7 @@ Cat &Cat::operator=(const Cat &other)
 Cat::~Cat()
 {
    delete brain;
-   std::cout << " Cat destructor called" << std::endl;
+   std::cout << "Cat destructor called" << std::endl;
 }
 
 void Cat::makeSound(void) const

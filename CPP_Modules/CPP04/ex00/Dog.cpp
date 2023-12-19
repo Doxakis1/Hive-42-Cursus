@@ -5,7 +5,7 @@ Dog::Dog() : Animal("Dog")
   std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &copy) : Animal(copy.m_type)
+Dog::Dog(const Dog &copy) : Animal(copy)
 {
    *this = copy; 
    std::cout << "Dog copy constructor called" << std::endl;
@@ -20,7 +20,7 @@ Dog &Dog::operator=(const Dog &other)
 
 Dog::~Dog()
 {
-   std::cout << " Dog destructor called" << std::endl;
+   std::cout << "Dog destructor called" << std::endl;
 }
 
 void Dog::makeSound(void) const

@@ -5,7 +5,7 @@ WrongCat::WrongCat() : WrongAnimal("WrongCat")
   std::cout << "WrongCat constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy.m_type)
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy)
 {
    *this = copy; 
    std::cout << "WrongCat copy constructor called" << std::endl;
@@ -20,7 +20,7 @@ WrongCat &WrongCat::operator=(const WrongCat &other)
 
 WrongCat::~WrongCat()
 {
-   std::cout << " WrongCat destructor called" << std::endl;
+   std::cout << "WrongCat destructor called" << std::endl;
 }
 
 void WrongCat::makeSound(void) const

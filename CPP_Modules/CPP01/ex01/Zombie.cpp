@@ -32,5 +32,5 @@ void Zombie::changeName(std::string name)
 {
     std::cout << "Zombie named changed from: " << this->name;
     this->name = name;
-    std::cout << " >> to: " << this->name << " via changeName method"<< std::endl;
+    std::cout << ">> to: " << this->name << " via changeName method"<< std::endl;
 }

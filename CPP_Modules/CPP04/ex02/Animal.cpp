@@ -26,7 +26,7 @@ Animal &Animal::operator=(const Animal &other)
 
 Animal::~Animal()
 {
-   std::cout << " Animal destructor called" << std::endl;
+   std::cout << "Animal destructor called" << std::endl;
 }
 
 void Animal::makeSound(void) const
