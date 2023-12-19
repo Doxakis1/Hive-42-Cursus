@@ -1,4 +1,5 @@
 #include "Brain.hpp"
+#include <stdexcept>
 
 Brain::Brain()
 {
