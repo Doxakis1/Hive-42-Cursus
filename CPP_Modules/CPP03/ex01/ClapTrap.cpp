@@ -2,17 +2,17 @@
 
 ClapTrap::ClapTrap() : m_name(std::string("Default")), m_hp(10), m_mana(10), m_ad(0)
 {
-    std::cout << "Default no-parameter constructor called" << std::endl;
+    std::cout << "ClapTrap no-parameter constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : m_name(name), m_hp(10), m_mana(10), m_ad(0)
 {
-    std::cout << "Default parameter constructor called" << std::endl;
+    std::cout << "ClapTrap parameter constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) : m_name(other.m_name), m_hp(other.m_hp), m_mana(other.m_mana), m_ad(other.m_ad)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    std::cout << "ClapTrap Copy constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
@@ -25,7 +25,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
     
     if (this == &other)
         return *this;
-    std::cout << "Copy assignment operator called" << std::endl;
+    std::cout << "ClapTrap Copy assignment operator called" << std::endl;
     m_name = other.m_name;
     m_hp = other.m_hp;
     m_mana = other.m_mana;

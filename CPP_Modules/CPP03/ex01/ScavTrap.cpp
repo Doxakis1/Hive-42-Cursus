@@ -5,7 +5,7 @@ ScavTrap::ScavTrap() : ClapTrap(std::string("DefaultScavtrap"))
     m_hp = 100;
     m_mana = 50;
     m_ad = 20;
-    std::cout << "Default no-parameter constructor called" << std::endl;
+    std::cout << " ScavTrap no-parameter constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)

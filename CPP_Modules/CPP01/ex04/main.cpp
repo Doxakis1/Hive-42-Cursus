@@ -6,6 +6,8 @@
 
 int create_and_replace(const std::string& filename, const std::string& find, const std::string& replace) 
 {
+    if (find.empty())
+        return (EXIT_FAILURE);
     std::ifstream in_filestream(filename, std::ios::in);
     if (!in_filestream.is_open()) {
         std::cout << "Error opening the input file: " << filename << std::endl;
